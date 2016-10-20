@@ -69,6 +69,11 @@ public class GenerateMaze {
 						monsterMultiplyWeakness=Integer.parseInt(storage[5]);
 						dummy.setMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture));
 					}
+					temp=in.readLine();
+					storage=temp.split(",");
+					for(int b=0; b<storage.length; b++){
+						dummy.addValidDirection(storage[b]);
+					}
 					maze[i][t]=dummy;
 				}
 			}
@@ -78,7 +83,30 @@ public class GenerateMaze {
 			System.out.println(e);
 			e.printStackTrace();			
 		}
+		attatchLinks();
 		
+	}
+	
+	public void attatchLinks(){
+		for(int i=0; i<numColumns; i++){
+			for(int t=0; t<numRows; t++){
+				//create the links for each room depending on whether you can go north south east or west
+				if(maze[i][t].isValidMovement("N")){					
+					maze[i][t].setN(maze[i][t-1]);
+				}
+				if(maze[i][t].isValidMovement("E")){
+					maze[i][t].setE(maze[i+1][t]);
+				}
+
+				if(maze[i][t].isValidMovement("S")){
+					maze[i][t].setS(maze[i][t+1]);
+				}
+
+				if(maze[i][t].isValidMovement("W")){
+					maze[i][t].setW(maze[i-1][t]);
+				}
+			}
+		}
 	}
 	
 	

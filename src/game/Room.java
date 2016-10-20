@@ -9,6 +9,7 @@ public class Room {
 	protected Room N;
 	protected Monster monster;
 	protected ArrayList<Item> items;
+	protected ArrayList<String> validMovements;
 	
 	public Room(){
 		items=new ArrayList<Item>();
@@ -17,6 +18,15 @@ public class Room {
 		E=null;
 		N=null;
 		monster=null;
+		validMovements=new ArrayList<String>();
+	}
+	
+	public void addValidDirection(String k){
+		//k should only be W,S,E,N
+		validMovements.add(k);
+	}
+	public boolean isValidMovement(String s){		
+		return validMovements.contains(s);
 	}
 	
 	public void addItem(Item k){
@@ -83,6 +93,8 @@ public class Room {
 		//monster.join()
 		return;
 	}
+	
+	
 	
 	public String toString(){
 		String returner="";
