@@ -1,0 +1,19 @@
+2,3
+Room
+None
+None
+Room
+Ice ball,orb.jpg,5,ice
+None
+Room
+None
+None
+Room
+None
+None
+Room
+Fire ball,orb.jpg,2,fire_Shadow ball,orb.jpg,2,darkness
+dragon,dragon.jpg,20,5,darkness,10
+Room
+None
+None
