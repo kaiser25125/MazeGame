@@ -3,6 +3,12 @@ package game;
 import java.util.ArrayList;
 
 public class Room {
+	/*
+	 * these are the rooms that make up the maze
+	 * has links to all directions
+	 * has a single variable for a monster
+	 * has a list of items in the room
+	 */
 	protected Room S;
 	protected Room W;
 	protected Room E;
@@ -10,7 +16,9 @@ public class Room {
 	protected Monster monster;
 	protected ArrayList<Item> items;
 	protected ArrayList<String> validMovements;
-	
+	/*
+	 * constructor just initalizes
+	 */
 	public Room(){
 		items=new ArrayList<Item>();
 		S=null;
@@ -20,23 +28,36 @@ public class Room {
 		monster=null;
 		validMovements=new ArrayList<String>();
 	}
-	
+	//add a valid direction to where the user can move
+	//takes string "W"
+	//no return
 	public void addValidDirection(String k){
 		//k should only be W,S,E,N
 		validMovements.add(k);
 	}
+	//detects if valid movement
+	//takes string like "W"
+	//returns boolean
 	public boolean isValidMovement(String s){		
 		return validMovements.contains(s);
 	}
-	
+	//adds an item to the list of items
+	//needs an item k
+	//returns nothing
 	public void addItem(Item k){
 		items.add(k);
 	}
-	
+	/*
+	 * removes an item from the list of items
+	 * takes an item k
+	 * returns nothing
+	 */
 	public void removeItem(Item k){
 		items.remove(k);
 	}
-	
+	/*
+	 * General getters and setters
+	 */
 	public Room getS() {
 		return S;
 	}
@@ -84,18 +105,21 @@ public class Room {
 	public void setItems(ArrayList<Item> items) {
 		this.items = items;
 	}
-	
+	//funciton to activate monster thread in the future
 	public void activateMonster(User player){
 		//monster.run(player);
 		return;
 	}
+	//function to join the monster thread in the future
 	public void deActivateMonster(){
 		//monster.join()
 		return;
 	}
 	
 	
-	
+	/*
+	 * to string that lists valid movements and what room has
+	 */
 	public String toString(){
 		String returner="";
 		if(this.N!=null){

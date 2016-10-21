@@ -1,15 +1,27 @@
 package game;
 
 import javax.swing.ImageIcon;
-
+/*
+ * monster class for the game
+ * attacks player on a thread (yet to be implemented)
+ * if the player is in the same room
+ */
 public class Monster {
+	//health monster has until dies
 	private int health;
+	//whether or not the monster is alive
 	private boolean alive;
+	//damage monster deals
 	private int power;
+	//name of the monster
 	private String name;
+	//element monster is weak to
 	private String element;
+	//image of monster
 	private ImageIcon image;
+	//number to multiply damage by if element of weapon = element
 	private int weakness;
+	//general constructor
 	public Monster(int health, int power, String name, String element,int weakness,ImageIcon image) {
 		this.image=image;
 		this.health = health;
@@ -19,6 +31,7 @@ public class Monster {
 		this.weakness=weakness;
 		this.alive=true;
 	}
+	//general getters and setters
 	public int getHealth() {
 		return health;
 	}
@@ -57,6 +70,9 @@ public class Monster {
 		this.alive = alive;
 	}
 	//need to synchronize this function
+	//monster takes damage from a weapon
+	//need an item
+	//alive is set to false if health is < 0
 	public void takeDamage(Item weapon){
 		if(weapon.getElement().equals(element)){
 			this.health=this.health-(weapon.getPower()*this.weakness);
@@ -68,4 +84,5 @@ public class Monster {
 			this.alive=false;
 		}
 	}
+	//need to add an attack function
 }

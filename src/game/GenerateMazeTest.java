@@ -9,6 +9,7 @@ public class GenerateMazeTest {
 	@Test
 	public void test() {		
 		GenerateMaze x=new GenerateMaze();
+		x.getStartRoom();
 		System.out.println(x);
 	}
 
