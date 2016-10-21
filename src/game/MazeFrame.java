@@ -1,12 +1,17 @@
 package game;
-
+/*
+ * mazeframe for controlling the game
+ * this is the data that guimaze will have which is the master class
+ * has a player and a currentRoom to control the game
+ */
 public class MazeFrame {
 	User player;
 	Room currentRoom;	
-	
+	//general constructor
 	public MazeFrame(){		
 	}
-
+	//makes the user turn right
+	//no in or out
 	public void turnRight(){
 		switch(player.getDirection()){
 		case "N":
@@ -23,6 +28,8 @@ public class MazeFrame {
 			break;
 		}
 	}
+	//makes the user turn left
+	//no in or out
 	public void turnLeft(){
 		switch(player.getDirection()){
 		case "N":
@@ -39,7 +46,9 @@ public class MazeFrame {
 			break;
 		}
 	}
-	
+	//makes the user go into the next room they are facing if they can
+	//no input
+	//returns whether or not user entered the room
 	public boolean moveForward(){
 		switch(player.getDirection()){
 		case "N":
@@ -69,6 +78,7 @@ public class MazeFrame {
 		}
 		return false;
 	}
+	//getters and setters
 	public User getPlayer() {
 		return player;
 	}
