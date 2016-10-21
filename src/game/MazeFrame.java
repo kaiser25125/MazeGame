@@ -3,6 +3,8 @@ package game;
  * mazeframe for controlling the game
  * this is the data that guimaze will have which is the master class
  * has a player and a currentRoom to control the game
+ * 
+ * need to add method for taking items from room
  */
 public class MazeFrame {
 	User player;
