@@ -156,6 +156,14 @@ public class GenerateMaze {
 			}
 		}
 	}
+
+	public int getNumRows() {
+		return numRows;
+	}
+
+	public int getNumColumns() {
+		return numColumns;
+	}
 	
 	
 
