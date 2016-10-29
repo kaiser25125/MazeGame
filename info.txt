@@ -16,7 +16,7 @@ None
 None
 W,E,N
 Room
-Fire ball,orb.jpg,2,fire_Shadow ball,orb.jpg,2,darkness
+Fire ball,orb.jpg,2,fire_Shadow ball,orb.jpg,2,darkness_Rake ball,orb.jpg,2,light
 dragon,dragon.jpg,20,5,darkness,10
 W,S
 Room

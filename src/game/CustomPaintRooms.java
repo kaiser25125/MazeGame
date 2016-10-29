@@ -29,11 +29,11 @@ public class CustomPaintRooms extends JComponent {
 		int lwItemRect=10;
 		//variable for those little red lines that show there is no wall
 		int offSetsForWalls=10;
-		g.setColor(Color.black);
+		g.setColor(Color.gray);
 		Room currentWorkingOn;
 		for(int i=0; i<master.getNumColumns(); i++){
 			for(int t=0; t<master.getNumRows(); t++){
-				g.setColor(Color.black);
+				g.setColor(Color.gray);
 				//draw the room
 				g.fillRect(i*GenerateMap.roomWidth, t*GenerateMap.roomLength, GenerateMap.roomWidth, GenerateMap.roomLength);
 				//draw the lines that you can go past
@@ -50,7 +50,7 @@ public class CustomPaintRooms extends JComponent {
 				//don't know why I didn't do this first
 				currentWorkingOn=master.getRoomAtLocation(Integer.toString(t)+","+Integer.toString(i));
 				
-				g.setColor(Color.black);
+				g.setColor(Color.gray);
 				//open the lines that are passable
 				if(currentWorkingOn.getE()!=null){
 					g.drawLine(i*GenerateMap.roomWidth + GenerateMap.roomWidth, t*GenerateMap.roomLength+offSetsForWalls,i*GenerateMap.roomWidth +GenerateMap.roomWidth, t*GenerateMap.roomLength + GenerateMap.roomLength-offSetsForWalls);
@@ -71,7 +71,12 @@ public class CustomPaintRooms extends JComponent {
 				}
 				//set the items if they are in this room
 				if(currentWorkingOn.items.size()>0){
-					g.setColor(Color.GRAY);
+					if(currentWorkingOn.items.size()==1)
+						g.setColor(Color.black);
+					if(currentWorkingOn.items.size()==2)
+						g.setColor(Color.green);
+					if(currentWorkingOn.items.size()>2)
+						g.setColor(Color.red);
 					g.fillRect(i*GenerateMap.roomWidth+(shaveForPosition), GenerateMap.roomLength+t*GenerateMap.roomLength-shaveForPosition, lwItemRect, lwItemRect);					
 				}
 			}
