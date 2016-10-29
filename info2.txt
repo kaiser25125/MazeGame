@@ -1,0 +1,19 @@
+2,2
+Room
+None
+None
+S,E
+Room
+Ice ball,orb.jpg,5,ice
+None
+N,E
+Room
+None
+None
+S,W
+Room
+None
+None
+W,N
+20
+0,1

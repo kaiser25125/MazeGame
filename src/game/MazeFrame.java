@@ -72,8 +72,8 @@ public class MazeFrame {
 			}
 			return false;
 		case "E":
-			if(this.currentRoom.getS()!=null){
-				this.currentRoom=this.currentRoom.getS();
+			if(this.currentRoom.getE()!=null){
+				this.currentRoom=this.currentRoom.getE();
 				return true;
 			}
 			return false;						

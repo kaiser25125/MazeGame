@@ -111,10 +111,10 @@ public class GenerateMaze {
 		attatchLinks();
 		
 	}
-	
+
 	public Room getRoomAtLocation(String location){		
 		int column=Integer.parseInt(location.split(",")[1]);
-		int row=Integer.parseInt(location.split(",")[0]);
+		int row=Integer.parseInt(location.split(",")[0]);		
 		return maze[column][row];
 	}
 	
@@ -163,6 +163,14 @@ public class GenerateMaze {
 
 	public int getNumColumns() {
 		return numColumns;
+	}
+
+	public int getUserHealth() {
+		return userHealth;
+	}
+
+	public void setUserHealth(int userHealth) {
+		this.userHealth = userHealth;
 	}
 	
 	

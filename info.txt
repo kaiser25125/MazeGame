@@ -2,7 +2,7 @@
 Room
 None
 None
-S,E
+S
 Room
 Ice ball,orb.jpg,5,ice
 None
@@ -10,7 +10,7 @@ N,E
 Room
 None
 None
-W,S,E
+S,E
 Room
 None
 None
