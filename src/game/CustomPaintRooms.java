@@ -67,7 +67,7 @@ public class CustomPaintRooms extends JComponent {
 				g.setColor(Color.blue);
 				//set where user is
 				if(currentWorkingOn==master.getCurrentRoom()){
-					g.drawString("U", i*GenerateMap.roomWidth+GenerateMap.roomWidth/2, t*GenerateMap.roomLength+GenerateMap.roomLength/2);
+					g.drawString(master.getUserDirection(), i*GenerateMap.roomWidth+GenerateMap.roomWidth/2, t*GenerateMap.roomLength+GenerateMap.roomLength/2);
 				}
 				//set the items if they are in this room
 				if(currentWorkingOn.items.size()>0){

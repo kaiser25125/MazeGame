@@ -48,4 +48,8 @@ public class JMediator {
 	public Room getRoomAtLocation(String location){
 		return maze.getRoomAtLocation(location); 
 	}
+	
+	public String getUserDirection(){
+		return game.getPlayer().getDirection();
+	}
 }
