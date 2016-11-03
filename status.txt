@@ -1,0 +1,3 @@
+This has all of the features necessary for part 2 with a small note.
+There is no directly going left or directly going right inside of my game.
+This could be implemented later but as of right now I didn't see much point in it.

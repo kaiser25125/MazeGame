@@ -53,31 +53,21 @@ public class MazeFrame {
 	//returns whether or not user entered the room
 	//need to refractor the if statements with hasForwardHall
 	public boolean moveForward(){
+		if(hasForwardHall()){
 		switch(player.getDirection()){
 		case "N":
-			if(this.currentRoom.getN()!=null){
-				this.currentRoom=this.currentRoom.getN();
-				return true;
-			}
-			return false;			
+			this.currentRoom=this.currentRoom.getN();
+			return true;
 		case "W":
-			if(this.currentRoom.getW()!=null){
-				this.currentRoom=this.currentRoom.getW();
-				return true;
-			}
-			return false;						
+			this.currentRoom=this.currentRoom.getW();
+			return true;
 		case "S":
-			if(this.currentRoom.getS()!=null){
-				this.currentRoom=this.currentRoom.getS();
-				return true;
-			}
-			return false;
-		case "E":
-			if(this.currentRoom.getE()!=null){
-				this.currentRoom=this.currentRoom.getE();
-				return true;
-			}
-			return false;						
+			this.currentRoom=this.currentRoom.getS();
+			return true;			
+		case "E":			
+			this.currentRoom=this.currentRoom.getE();
+			return true;						
+		}
 		}
 		return false;
 	}
@@ -111,7 +101,7 @@ public class MazeFrame {
 		return false;
 	}
 	
-	public boolean hasForwardHall(){
+	public boolean hasForwardHall(){		
 		switch(this.getPlayer().getDirection()){
 		case "N":
 			return (this.getCurrentRoom().getN()!=null);
@@ -124,6 +114,60 @@ public class MazeFrame {
 		}
 		return false;
 	}
+	//this is for helping the graphics
+	//returns whether the room forward of this room has a room forward
+	//takes no input
+	public boolean nextRoomHasForwardHall(){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+				case "N":
+					return (this.getCurrentRoom().getN().getN()!=null);
+				case "E":
+					return (this.getCurrentRoom().getE().getE()!=null);
+				case "S":
+					return (this.getCurrentRoom().getS().getS()!=null);
+				case "W":
+					return (this.getCurrentRoom().getW().getW()!=null);
+			}		
+		}
+		return false;
+	}
+	
+
+	public boolean nextRoomHasLeftHall(){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+				case "N":
+					return (this.getCurrentRoom().getN().getW()!=null);
+				case "E":
+					return (this.getCurrentRoom().getE().getN()!=null);
+				case "S":
+					return (this.getCurrentRoom().getS().getE()!=null);
+				case "W":
+					return (this.getCurrentRoom().getW().getS()!=null);
+			}		
+		}
+		return false;
+	}
+
+
+	public boolean nextRoomHasRightHall(){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+				case "N":
+					return (this.getCurrentRoom().getN().getE()!=null);
+				case "E":
+					return (this.getCurrentRoom().getE().getS()!=null);
+				case "S":
+					return (this.getCurrentRoom().getS().getW()!=null);
+				case "W":
+					return (this.getCurrentRoom().getW().getN()!=null);
+			}		
+		}
+		return false;
+	}
+
+	
 	//getters and setters
 	public User getPlayer() {
 		return player;

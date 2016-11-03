@@ -25,8 +25,8 @@ public class JMediator {
 	}
 	//turns the user left
 	public void turnLeft(){		
-		game.turnLeft();
-		System.out.println(this.game.getPlayer().direction);
+		game.turnLeft();		
+		System.out.println(game.nextRoomHasRightHall());
 	}
 	//turns the user right
 	public void turnRight(){
