@@ -38,11 +38,9 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		jWhole=new JFrame();
 		jWhole.setSize(gameWidth, gameLength);
 		jWhole.setLayout(new BorderLayout());
-		jTopPanel=new JPanel();
+		jTopPanel=new JPanel(new BorderLayout());
 		//set color for later
-		jTopPanel.setBackground(Color.yellow);
-		//add the top part of the screen
-		jWhole.add(jTopPanel,BorderLayout.NORTH);
+		jTopPanel.setBackground(Color.yellow);				
 		//create the bottom part
 		jBottomPanel=new JPanel();
 		jBottomPanel.setBackground(Color.red);
@@ -55,6 +53,12 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		repainter.setToolBar(bar);
 		jBottomPanel.add(bar,BorderLayout.CENTER);		
 		jWhole.add(jBottomPanel,BorderLayout.SOUTH);
+		
+		CustomPaintMaze pictures=new CustomPaintMaze(master,repainter);
+		repainter.setRoom(pictures);
+		//add the top part of the screen
+		jTopPanel.add(pictures, BorderLayout.CENTER);
+		jWhole.add(jTopPanel,BorderLayout.NORTH);
 		//add key listener
 		jWhole.addKeyListener(this);
 		//set the game to be visible

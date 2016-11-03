@@ -51,6 +51,7 @@ public class MazeFrame {
 	//makes the user go into the next room they are facing if they can
 	//no input
 	//returns whether or not user entered the room
+	//need to refractor the if statements with hasForwardHall
 	public boolean moveForward(){
 		switch(player.getDirection()){
 		case "N":
@@ -77,6 +78,49 @@ public class MazeFrame {
 				return true;
 			}
 			return false;						
+		}
+		return false;
+	}
+	
+	public boolean hasLeftHall(){
+		switch(this.getPlayer().getDirection()){
+		case "N":
+			return (this.getCurrentRoom().getW()!=null);
+		case "W":
+			return (this.getCurrentRoom().getS()!=null);
+		case "S":
+			return (this.getCurrentRoom().getE()!=null);
+		case "E":
+			return (this.getCurrentRoom().getN()!=null);
+		}
+		return false;
+	}
+	
+	
+	public boolean hasRightHall(){
+		switch(this.getPlayer().getDirection()){
+		case "N":
+			return (this.getCurrentRoom().getE()!=null);
+		case "E":
+			return (this.getCurrentRoom().getS()!=null);
+		case "S":
+			return (this.getCurrentRoom().getW()!=null);
+		case "W":
+			return (this.getCurrentRoom().getN()!=null);
+		}
+		return false;
+	}
+	
+	public boolean hasForwardHall(){
+		switch(this.getPlayer().getDirection()){
+		case "N":
+			return (this.getCurrentRoom().getN()!=null);
+		case "E":
+			return (this.getCurrentRoom().getE()!=null);
+		case "S":
+			return (this.getCurrentRoom().getS()!=null);
+		case "W":
+			return (this.getCurrentRoom().getW()!=null);
 		}
 		return false;
 	}

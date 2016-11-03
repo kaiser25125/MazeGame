@@ -52,4 +52,17 @@ public class JMediator {
 	public String getUserDirection(){
 		return game.getPlayer().getDirection();
 	}
+	
+	public boolean hasLeftHall(){
+		return game.hasLeftHall();
+	}
+	
+	public boolean hasRightHall(){
+		return game.hasRightHall();
+	}
+	
+	public boolean hasForwardHall(){
+		return game.hasForwardHall();
+	}
+	
 }

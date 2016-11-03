@@ -4,7 +4,7 @@ package game;
  */
 public class CPCMediator {
 	//all of the different parts that can be stored to redraw
-	private GuiRoom room;
+	private CustomPaintMaze room;
 	private CustomPaintToolBar toolBar;
 	private CustomPaintRooms map;
 	//all of the constructors take custom painted components if they have parameters
@@ -30,13 +30,18 @@ public class CPCMediator {
 			map.invalidate();
 			map.repaint();
 		}
+		if(room!=null){
+			room.invalidate();
+			room.repaint();
+		}
+		
 	}
 	//getters and setters	
-	public GuiRoom getRoom() {
+	public CustomPaintMaze getRoom() {
 		return room;
 	}
 
-	public void setRoom(GuiRoom room) {
+	public void setRoom(CustomPaintMaze room) {
 		this.room = room;
 	}
 
