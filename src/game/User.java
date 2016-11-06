@@ -29,7 +29,11 @@ public class User {
 	public ArrayList<Item> getItems() {
 		return items;
 	}
-
+	
+	public void removeItem(Item remover){
+		items.remove(remover);
+	}
+	
 	public boolean isAlive() {
 		return alive;
 	}

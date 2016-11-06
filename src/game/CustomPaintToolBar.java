@@ -7,8 +7,11 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 /*
  * this is the CustomPaintedComponenet for the bottom part of the screen
  * 
@@ -21,6 +24,7 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 	private CPCMediator painter;
 	private Rectangle mapButton;
 	private GenerateMap map;
+	private ItemListener graphicItems;
 	//takes the data and graphics mediator as input
 	//output is the custom painted component
 	public CustomPaintToolBar(JMediator med,CPCMediator med2){
@@ -28,12 +32,14 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 		//initalize observer for clicking mouse
 		this.arrow=new ArrowObserver();
 		this.painter=med2;		
+		this.graphicItems=new ItemListener();
 		//set the size of the bottom
 		this.setPreferredSize(new Dimension(GuiMaze.gameWidth,GuiMaze.getToolBarSize()));		
 		this.addMouseListener(this);
 	}
 	//paint method for the bottom
 	public void paint(Graphics g){
+		this.graphicItems=new ItemListener();
 		g.setColor(Color.black);
 		//variables for messing with the screen
 		int xOffSet=20;
@@ -84,13 +90,35 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 		g.drawPolygon(triangle);
 		//draw the map button
 		mapButton=new Rectangle(GuiMaze.gameWidth-((int)(GuiMaze.gameWidth*.2)),GuiMaze.getToolBarSize()/4,mapButtonWidth,mapButtonHeight);
-		g.drawRect(mapButton.x, mapButton.y, mapButton.width, mapButton.height);		
+		g.drawRect(mapButton.x, mapButton.y, mapButton.width, mapButton.height);
+		if(master.getUserItems().size()>0){
+			ArrayList<Item> items=master.getUserItems();
+			Iterator<Item> itemIterator=items.iterator();
+			int acc=0;
+			int xPosition;
+			int yPosition;
+			int xSize=50;
+			int ySize=50;
+			Item currentItem;
+			Rectangle listener;
+			while(itemIterator.hasNext()){
+				currentItem=itemIterator.next();
+				xPosition=GuiMaze.gameWidth/3;
+				xPosition=xPosition+((GuiMaze.gameWidth/items.size()/3)*acc);
+				yPosition=GuiMaze.getToolBarSize()/2;
+				listener=new Rectangle(xPosition,yPosition,xSize,ySize);
+				graphicItems.addListener(listener);				
+				g.drawImage(currentItem.getImage().getImage(), xPosition, yPosition, xSize, ySize,null);				
+				acc=acc+1;
+			}
+		}
 	}
 	//all mouse click events for the game
 	//so far we have up left right and map
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub	
+		Item clickedItem;
 		if(arrow.UpClicked(arg0.getPoint())){
 			System.out.println("up");
 			master.moveForward();	
@@ -111,6 +139,23 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 			System.out.println("map");
 			map=new GenerateMap(master,painter);
 			painter.reDraw();
+		}
+		
+		if(graphicItems.getItems().size()>0){	
+			System.out.println("Bottom screen click 2");
+			if(graphicItems.getClickedNumber(arg0.getPoint())>-1){
+				if(SwingUtilities.isLeftMouseButton(arg0)){
+					//attack monster, do nothing now
+				}
+				if(SwingUtilities.isRightMouseButton(arg0)){
+					if(master.hasForwardHall()){
+						clickedItem=master.getNumberItemUser(graphicItems.getClickedNumber(arg0.getPoint()));
+						master.removeItemFromUser(clickedItem);
+						master.addItemToNextRoom(clickedItem);
+						painter.reDraw();
+					}
+				}
+			}
 		}
 		
 	}

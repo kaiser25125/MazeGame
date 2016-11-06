@@ -1,4 +1,7 @@
 package game;
+
+import java.util.ArrayList;
+
 /*
  * this is a mediator that will hold the generated maze and the mazeframe
  * 
@@ -63,6 +66,51 @@ public class JMediator {
 	
 	public boolean hasForwardHall(){
 		return game.hasForwardHall();
+	}
+	
+	public boolean nextRoomHasForwardHall(){
+		return game.nextRoomHasForwardHall();
+	}
+	
+	public boolean nextRoomHasLeftHall(){
+		return game.nextRoomHasLeftHall();
+	}
+	
+	public boolean nextRoomHasRightHall(){
+		return game.nextRoomHasRightHall();
+	}
+	public boolean nextRoomHasItem(){
+		return game.nextRoomHasItem();
+	}
+	public ArrayList<Item> getNextRoomItem(){
+		return game.getNextRoomItems();
+	}
+	
+	public Item getNumberItemNextRoom(int x){
+		return game.getNumberItemNextRoom(x);
+	}
+	public void addItemToUser(Item itmToAdd){
+		game.addItemtoUser(itmToAdd);
+	}
+	
+	public void removeItemFromNextRoom(Item itmToRemove){
+		game.removeItemFromNextRoom(itmToRemove);
+	}
+	
+	public ArrayList<Item> getUserItems(){
+		return game.getUserItems();
+	}
+	
+	public void addItemToNextRoom(Item tool){
+		game.addItemToNextRoom(tool);
+	}
+	
+	public void removeItemFromUser(Item tool){
+		game.removeItemFromUser(tool);
+	}
+	
+	public Item getNumberItemUser(int x){
+		return game.getNumberItemUser(x);
 	}
 	
 }

@@ -1,4 +1,7 @@
 package game;
+
+import java.util.ArrayList;
+
 /*
  * mazeframe for controlling the game
  * this is the data that guimaze will have which is the master class
@@ -167,6 +170,48 @@ public class MazeFrame {
 		return false;
 	}
 
+	public boolean nextRoomHasItem(){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+				case "N":
+					return (this.getCurrentRoom().getN().getItems().size()>0);
+				case "E":
+					return (this.getCurrentRoom().getE().getItems().size()>0);
+				case "S":
+					return (this.getCurrentRoom().getS().getItems().size()>0);
+				case "W":
+					return (this.getCurrentRoom().getW().getItems().size()>0);
+			}		
+		}
+		return false;
+	}
+
+	public ArrayList<Item> getNextRoomItems(){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+				case "N":
+					return (this.getCurrentRoom().getN().getItems());
+				case "E":
+					return (this.getCurrentRoom().getE().getItems());
+				case "S":
+					return (this.getCurrentRoom().getS().getItems());
+				case "W":
+					return (this.getCurrentRoom().getW().getItems());
+			}		
+		}
+		return null;
+	}
+	
+	public Item getNumberItemNextRoom(int x){
+		ArrayList<Item> items=getNextRoomItems();
+		if(items!=null){
+			return items.get(x);
+		}
+		return null;
+	}
+	public ArrayList<Item> getUserItems(){
+		return this.player.getItems();
+	}
 	
 	//getters and setters
 	public User getPlayer() {
@@ -184,5 +229,57 @@ public class MazeFrame {
 	public void setCurrentRoom(Room currentRoom) {
 		this.currentRoom = currentRoom;
 	}
+	public void addItemtoUser(Item tool){
+		this.player.addItem(tool);
+	}
 	
+	public void removeItemFromNextRoom(Item tool){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+				case "N":
+					this.getCurrentRoom().getN().removeItem(tool);
+					break;
+				case "E":
+					this.getCurrentRoom().getE().removeItem(tool);					
+					break;
+				case "S":
+					this.getCurrentRoom().getS().removeItem(tool);					
+					break;
+				case "W":
+					this.getCurrentRoom().getW().removeItem(tool);					
+					break;
+			}		
+		}
+	}
+	
+	public void addItemToNextRoom(Item tool){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+				case "N":
+					this.getCurrentRoom().getN().addItem(tool);
+					break;
+				case "E":
+					this.getCurrentRoom().getE().addItem(tool);					
+					break;
+				case "S":
+					this.getCurrentRoom().getS().addItem(tool);					
+					break;
+				case "W":
+					this.getCurrentRoom().getW().addItem(tool);					
+					break;
+			}		
+		}
+	}
+	
+	public void removeItemFromUser(Item remover){
+		this.player.removeItem(remover);
+	}
+	
+	public Item getNumberItemUser(int x){
+		ArrayList<Item> items=getUserItems();
+		if(items!=null){
+			return items.get(x);
+		}
+		return null;
+	}
 }

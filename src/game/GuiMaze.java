@@ -29,8 +29,8 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 	//mediator to repaint
 	private CPCMediator repainter;
 	//constants for the screen size
-	public final static int gameLength=600;
-	public final static int gameWidth=800;
+	public final static int gameLength=700;
+	public final static int gameWidth=900;
 	//needs the data mediator as input
 	public GuiMaze(JMediator med){
 		this.master=med;
@@ -100,7 +100,8 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
 			master.turnRight();
 			repainter.reDraw();
-		}
+		}		
+		
 	}
 
 
