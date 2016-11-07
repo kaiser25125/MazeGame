@@ -140,13 +140,16 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 			map=new GenerateMap(master,painter);
 			painter.reDraw();
 		}
-		
+		//if user has items
 		if(graphicItems.getItems().size()>0){	
 			System.out.println("Bottom screen click 2");
+			//if user clicked item
 			if(graphicItems.getClickedNumber(arg0.getPoint())>-1){
+				//if user left clicked attack
 				if(SwingUtilities.isLeftMouseButton(arg0)){
 					//attack monster, do nothing now
 				}
+				//if user right clicked drop the item in the room
 				if(SwingUtilities.isRightMouseButton(arg0)){
 					if(master.hasForwardHall()){
 						clickedItem=master.getNumberItemUser(graphicItems.getClickedNumber(arg0.getPoint()));

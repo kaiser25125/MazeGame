@@ -29,7 +29,7 @@ public class User {
 	public ArrayList<Item> getItems() {
 		return items;
 	}
-	
+	//remove an item from the user's list of items
 	public void removeItem(Item remover){
 		items.remove(remover);
 	}

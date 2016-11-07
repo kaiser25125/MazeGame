@@ -53,7 +53,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		repainter.setToolBar(bar);
 		jBottomPanel.add(bar,BorderLayout.CENTER);		
 		jWhole.add(jBottomPanel,BorderLayout.SOUTH);
-		
+		//create the maze pictures
 		CustomPaintMaze pictures=new CustomPaintMaze(master,repainter);
 		repainter.setRoom(pictures);
 		//add the top part of the screen

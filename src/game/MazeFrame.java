@@ -54,7 +54,6 @@ public class MazeFrame {
 	//makes the user go into the next room they are facing if they can
 	//no input
 	//returns whether or not user entered the room
-	//need to refractor the if statements with hasForwardHall
 	public boolean moveForward(){
 		if(hasForwardHall()){
 		switch(player.getDirection()){
@@ -74,7 +73,9 @@ public class MazeFrame {
 		}
 		return false;
 	}
-	
+	//returns true if the current room has a passage for the user to the left
+	//takes no input
+	//output is true or false if it exists
 	public boolean hasLeftHall(){
 		switch(this.getPlayer().getDirection()){
 		case "N":
@@ -89,7 +90,9 @@ public class MazeFrame {
 		return false;
 	}
 	
-	
+	//returns true if the current room has a passage for the user to the right
+	//takes no input
+	//output is true or false if it exists	
 	public boolean hasRightHall(){
 		switch(this.getPlayer().getDirection()){
 		case "N":
@@ -103,7 +106,9 @@ public class MazeFrame {
 		}
 		return false;
 	}
-	
+	//returns true if the current room has a passage for the user to the forward direction
+	//takes no input
+	//output is true or false if it exists	
 	public boolean hasForwardHall(){		
 		switch(this.getPlayer().getDirection()){
 		case "N":
@@ -136,7 +141,9 @@ public class MazeFrame {
 		return false;
 	}
 	
-
+	//this is for helping the graphics
+	//returns whether the room forward of this room has a link for the room to the left
+	//takes no input
 	public boolean nextRoomHasLeftHall(){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -153,7 +160,9 @@ public class MazeFrame {
 		return false;
 	}
 
-
+	//this is for helping the graphics
+	//returns whether the room forward of this room has a room to the right
+	//takes no input
 	public boolean nextRoomHasRightHall(){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -169,7 +178,9 @@ public class MazeFrame {
 		}
 		return false;
 	}
-
+	//this is for helping the graphics
+	//returns whether the room forward of this room has items
+	//takes no input
 	public boolean nextRoomHasItem(){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -185,7 +196,9 @@ public class MazeFrame {
 		}
 		return false;
 	}
-
+	//this is for helping the graphics
+	//returns the room forward of this room's items
+	//takes no input
 	public ArrayList<Item> getNextRoomItems(){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -201,7 +214,10 @@ public class MazeFrame {
 		}
 		return null;
 	}
-	
+	//this is for helping the graphics
+	//returns the item at an index of the next rooms items
+	//takes an index as input
+	//(not the greatest way to do it
 	public Item getNumberItemNextRoom(int x){
 		ArrayList<Item> items=getNextRoomItems();
 		if(items!=null){
@@ -229,10 +245,15 @@ public class MazeFrame {
 	public void setCurrentRoom(Room currentRoom) {
 		this.currentRoom = currentRoom;
 	}
+	//adds an item to the user's list of items
+	//takes a item as input
+	//no output
 	public void addItemtoUser(Item tool){
 		this.player.addItem(tool);
 	}
-	
+	//removes item tool from the next room
+	//takes a item as input
+	//no output
 	public void removeItemFromNextRoom(Item tool){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -251,7 +272,9 @@ public class MazeFrame {
 			}		
 		}
 	}
-	
+	//adds item tool to the next room
+	//takes a item as input
+	//no output	
 	public void addItemToNextRoom(Item tool){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -270,11 +293,15 @@ public class MazeFrame {
 			}		
 		}
 	}
-	
+	//removes an item from the user
+	//takes an item as input
+	//no output
 	public void removeItemFromUser(Item remover){
 		this.player.removeItem(remover);
 	}
-	
+	//this gets an item at a certain index
+	//takes an int as an index as input
+	//outputs an item
 	public Item getNumberItemUser(int x){
 		ArrayList<Item> items=getUserItems();
 		if(items!=null){
