@@ -57,19 +57,19 @@ public class MazeFrame {
 	public boolean moveForward(){
 		if(hasForwardHall()){
 		switch(player.getDirection()){
-		case "N":
-			this.currentRoom=this.currentRoom.getN();
-			return true;
-		case "W":
-			this.currentRoom=this.currentRoom.getW();
-			return true;
-		case "S":
-			this.currentRoom=this.currentRoom.getS();
-			return true;			
-		case "E":			
-			this.currentRoom=this.currentRoom.getE();
-			return true;						
-		}
+			case "N":
+				this.currentRoom=this.currentRoom.getN();
+				return true;
+			case "W":
+				this.currentRoom=this.currentRoom.getW();
+				return true;
+			case "S":
+				this.currentRoom=this.currentRoom.getS();
+				return true;			
+			case "E":			
+				this.currentRoom=this.currentRoom.getE();
+				return true;						
+			}
 		}
 		return false;
 	}
@@ -293,6 +293,26 @@ public class MazeFrame {
 			}		
 		}
 	}
+	/*
+	public void activateNextRoomMonsters(){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+			case "N":
+				this.getCurrentRoom().getN().activateMonsters();
+				break;
+			case "E":
+				this.getCurrentRoom().getE().addItem(tool);					
+				break;
+			case "S":
+				this.getCurrentRoom().getS().addItem(tool);					
+				break;
+			case "W":
+				this.getCurrentRoom().getW().addItem(tool);					
+				break;
+		}
+		}
+	}
+	*/
 	//removes an item from the user
 	//takes an item as input
 	//no output

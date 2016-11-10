@@ -6,7 +6,8 @@ import javax.swing.ImageIcon;
  * attacks player on a thread (yet to be implemented)
  * if the player is in the same room
  */
-public class Monster {
+public class Monster implements Runnable {
+	private Object healthSem;
 	//health monster has until dies
 	private int health;
 	//whether or not the monster is alive
@@ -21,6 +22,8 @@ public class Monster {
 	private ImageIcon image;
 	//number to multiply damage by if element of weapon = element
 	private int weakness;
+	
+	private State monsterState;
 	//general constructor
 	public Monster(int health, int power, String name, String element,int weakness,ImageIcon image) {
 		this.image=image;
@@ -69,6 +72,20 @@ public class Monster {
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
+	
+	public void addCPCMediatorToState(CPCMediator painter){
+		this.monsterState.setPainter(painter);
+	}
+	
+	public void addJMediatorToState(JMediator master){
+		this.monsterState.setMaster(master);
+	}
+	public State getMonsterState() {
+		return monsterState;
+	}
+	public void setMonsterState(State monsterState) {
+		this.monsterState = monsterState;
+	}
 	//need to synchronize this function
 	//monster takes damage from a weapon
 	//need an item
@@ -85,4 +102,12 @@ public class Monster {
 		}
 	}
 	//need to add an attack function
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		boolean run=true;
+		while(run){
+			run=monsterState.doAction();
+		}
+	}
 }

@@ -78,15 +78,31 @@ public class GenerateMaze {
 					temp=in.readLine();
 					//if there is a monster
 					if(!temp.equals("None")){
-						storage=temp.split(",");
-						monsterName=storage[0];
-						monsterPicture=new ImageIcon(storage[1]);
-						monsterHealth=Integer.parseInt(storage[2]);
-						monsterPower=Integer.parseInt(storage[3]);
-						monsterWeakness=storage[4];
-						monsterMultiplyWeakness=Integer.parseInt(storage[5]);
-						//add monster to room
-						dummy.setMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture));
+						if(!temp.contains("_")){
+							storage=temp.split(",");
+							monsterName=storage[0];
+							monsterPicture=new ImageIcon(storage[1]);
+							monsterHealth=Integer.parseInt(storage[2]);
+							monsterPower=Integer.parseInt(storage[3]);
+							monsterWeakness=storage[4];
+							monsterMultiplyWeakness=Integer.parseInt(storage[5]);
+							//add monster to room
+							dummy.addMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture));
+						}
+						else{
+							underScrePrsnt=temp;
+							for(int a=0; a<underScrePrsnt.split("_").length; a++){
+								storage=(underScrePrsnt.split("_")[0]).split(",");
+								monsterName=storage[0];
+								monsterPicture=new ImageIcon(storage[1]);
+								monsterHealth=Integer.parseInt(storage[2]);
+								monsterPower=Integer.parseInt(storage[3]);
+								monsterWeakness=storage[4];
+								monsterMultiplyWeakness=Integer.parseInt(storage[5]);
+								//add monster to room
+								dummy.addMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture));
+							}
+						}
 					}
 					temp=in.readLine();
 					storage=temp.split(",");
@@ -156,6 +172,9 @@ public class GenerateMaze {
 			}
 		}
 	}
+	
+		
+	
 
 	public int getNumRows() {
 		return numRows;

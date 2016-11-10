@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Room {
 	/*
@@ -13,7 +14,7 @@ public class Room {
 	protected Room W;
 	protected Room E;
 	protected Room N;
-	protected Monster monster;
+	protected ArrayList<Monster> monster;
 	protected ArrayList<Item> items;
 	protected ArrayList<String> validMovements;
 	/*
@@ -27,6 +28,7 @@ public class Room {
 		N=null;
 		monster=null;
 		validMovements=new ArrayList<String>();
+		monster=new ArrayList<Monster>();
 	}
 	//add a valid direction to where the user can move
 	//takes string "W"
@@ -90,12 +92,12 @@ public class Room {
 		N = n;
 	}
 
-	public Monster getMonster() {
+	public ArrayList<Monster> getMonsters() {
 		return monster;
 	}
 
-	public void setMonster(Monster monster) {
-		this.monster = monster;
+	public void addMonster(Monster monster) {
+		this.monster.add(monster);
 	}
 
 	public ArrayList<Item> getItems() {
@@ -106,8 +108,19 @@ public class Room {
 		this.items = items;
 	}
 	//funciton to activate monster thread in the future
-	public void activateMonster(User player){
-		//monster.run(player);
+	public void activateMonsters(){
+		Iterator<Monster> iterator=monster.iterator();
+		Monster dummy;
+		Thread t1;
+		while(iterator.hasNext()){
+			dummy=iterator.next();
+			if(dummy.getMonsterState()==null || (dummy.getMonsterState() instanceof PausedState)){
+				System.out.println("activate monsters");
+				dummy.setMonsterState(new AttackingState());
+				t1=new Thread(dummy);
+				t1.start();
+			}
+		}
 		return;
 	}
 	//function to join the monster thread in the future
@@ -134,8 +147,9 @@ public class Room {
 		if(this.W!=null){
 			returner=returner+"W:valid ";
 		}
-		if(this.getMonster()!=null){
-			returner=returner+this.getMonster().getName()+" ";
+		if(this.getMonsters().size()>0){
+			for(int i=0;i<this.getMonsters().size(); i++)
+			returner=returner+this.getMonsters().get(i).toString()+" ";
 		}			
 		
 		return returner;

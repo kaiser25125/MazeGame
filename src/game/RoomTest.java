@@ -12,7 +12,7 @@ public class RoomTest {
 	public void test() {
 		Room x=new Room();
 		x.setS(x);
-		x.setMonster(new Monster(20,20,"dragon","ice",4,new ImageIcon("orb.jpg")));
+		
 		System.out.println(x);
 	}
 
