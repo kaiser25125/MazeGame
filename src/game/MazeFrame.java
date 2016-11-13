@@ -17,7 +17,8 @@ public class MazeFrame {
 	}
 	//makes the user turn right
 	//no in or out
-	public void turnRight(){
+	public void turnRight(JMediator master,CPCMediator painter){
+		deActivateNextRoomMonsters(master,painter);
 		switch(player.getDirection()){
 		case "N":
 			player.setDirection("E");
@@ -32,10 +33,12 @@ public class MazeFrame {
 			player.setDirection("N");
 			break;
 		}
+		activateNextRoomMonsters(master,painter);
 	}
 	//makes the user turn left
 	//no in or out
-	public void turnLeft(){
+	public void turnLeft(JMediator master,CPCMediator painter){
+		deActivateNextRoomMonsters(master,painter);
 		switch(player.getDirection()){
 		case "N":
 			player.setDirection("W");
@@ -50,12 +53,14 @@ public class MazeFrame {
 			player.setDirection("N");
 			break;
 		}
+		activateNextRoomMonsters(master,painter);
 	}
 	//makes the user go into the next room they are facing if they can
 	//no input
 	//returns whether or not user entered the room
-	public boolean moveForward(){
+	public boolean moveForward(JMediator master,CPCMediator painter){
 		if(hasForwardHall()){
+			deActivateNextRoomMonsters(master,painter);
 		switch(player.getDirection()){
 			case "N":
 				this.currentRoom=this.currentRoom.getN();
@@ -70,6 +75,7 @@ public class MazeFrame {
 				this.currentRoom=this.currentRoom.getE();
 				return true;						
 			}
+		activateNextRoomMonsters(master,painter);
 		}
 		return false;
 	}
@@ -293,26 +299,103 @@ public class MazeFrame {
 			}		
 		}
 	}
-	/*
-	public void activateNextRoomMonsters(){
+
+	public void activateNextRoomMonsters(JMediator master,CPCMediator painter){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
 			case "N":
-				this.getCurrentRoom().getN().activateMonsters();
+				this.getCurrentRoom().getN().activateMonsters(master,painter);
 				break;
 			case "E":
-				this.getCurrentRoom().getE().addItem(tool);					
+				this.getCurrentRoom().getE().activateMonsters(master,painter);				
 				break;
 			case "S":
-				this.getCurrentRoom().getS().addItem(tool);					
+				this.getCurrentRoom().getS().activateMonsters(master,painter);								
 				break;
 			case "W":
-				this.getCurrentRoom().getW().addItem(tool);					
+				this.getCurrentRoom().getW().activateMonsters(master,painter);												
 				break;
 		}
 		}
 	}
-	*/
+	
+
+	public boolean nextRoomHasMonsters(){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+			case "N":
+				return this.getCurrentRoom().getN().getMonsters().size()>0;				
+			case "E":
+				return this.getCurrentRoom().getE().getMonsters().size()>0;								
+			case "S":
+				return this.getCurrentRoom().getS().getMonsters().size()>0;												
+			case "W":
+				return this.getCurrentRoom().getW().getMonsters().size()>0;																
+		}
+		}
+		return false;
+	}
+
+	
+
+	public ArrayList<Monster> nextRoomMonsters(){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+			case "N":
+				return this.getCurrentRoom().getN().getMonsters();				
+			case "E":
+				return this.getCurrentRoom().getE().getMonsters();								
+			case "S":
+				return this.getCurrentRoom().getS().getMonsters();												
+			case "W":
+				return this.getCurrentRoom().getW().getMonsters();																
+		}
+		}
+		return null;
+	}
+
+	public void deActivateNextRoomMonsters(JMediator master,CPCMediator painter){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+			case "N":
+				this.getCurrentRoom().getN().deActivateMonsters(master,painter);
+				break;
+			case "E":
+				this.getCurrentRoom().getE().deActivateMonsters(master,painter);				
+				break;
+			case "S":
+				this.getCurrentRoom().getS().deActivateMonsters(master,painter);								
+				break;
+			case "W":
+				this.getCurrentRoom().getW().deActivateMonsters(master,painter);												
+				break;
+		}
+		}
+	}
+	
+	public void attackNextRoomMonsters(Item weapon){
+		if(this.hasForwardHall()){
+			switch(this.getPlayer().getDirection()){
+			case "N":
+				this.getCurrentRoom().getN().attackMonsters(weapon);
+				break;
+			case "E":
+				this.getCurrentRoom().getE().attackMonsters(weapon);				
+				break;
+			case "S":
+				this.getCurrentRoom().getS().attackMonsters(weapon);								
+				break;
+			case "W":
+				this.getCurrentRoom().getS().attackMonsters(weapon);												
+				break;
+		}
+		}
+	}
+	
+	public void damageUser(int damage){
+		this.player.takeDamage(damage);
+	}
+	
 	//removes an item from the user
 	//takes an item as input
 	//no output

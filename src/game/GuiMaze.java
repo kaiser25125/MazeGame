@@ -56,6 +56,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		//create the maze pictures
 		CustomPaintMaze pictures=new CustomPaintMaze(master,repainter);
 		repainter.setRoom(pictures);
+		master.setPainter(repainter);
 		//add the top part of the screen
 		jTopPanel.add(pictures, BorderLayout.CENTER);
 		jWhole.add(jTopPanel,BorderLayout.NORTH);
@@ -87,8 +88,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		//output is the user moving
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		System.out.println("pressed");
+		// TODO Auto-generated method stub		
 		if (arg0.getKeyCode() == KeyEvent.VK_UP) {
 			master.moveForward();
 			repainter.reDraw();

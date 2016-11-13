@@ -23,11 +23,16 @@ public class Monster implements Runnable {
 	//number to multiply damage by if element of weapon = element
 	private int weakness;
 	
+	private int maxHealth;
+	
 	private State monsterState;
+	
+	public Object monsterHealthLock=new Object();
 	//general constructor
 	public Monster(int health, int power, String name, String element,int weakness,ImageIcon image) {
 		this.image=image;
 		this.health = health;
+		this.maxHealth=health;
 		this.power = power;
 		this.name = name;
 		this.element = element;
@@ -36,7 +41,9 @@ public class Monster implements Runnable {
 	}
 	//general getters and setters
 	public int getHealth() {
-		return health;
+		synchronized(monsterHealthLock){
+			return health;
+		}
 	}
 	public void setHealth(int health) {
 		this.health = health;
@@ -86,19 +93,28 @@ public class Monster implements Runnable {
 	public void setMonsterState(State monsterState) {
 		this.monsterState = monsterState;
 	}
+	
+	public float getPercentHealth(){
+		synchronized(monsterHealthLock){
+			return (this.health/this.maxHealth);
+		}
+	}
 	//need to synchronize this function
 	//monster takes damage from a weapon
 	//need an item
 	//alive is set to false if health is < 0
 	public void takeDamage(Item weapon){
-		if(weapon.getElement().equals(element)){
-			this.health=this.health-(weapon.getPower()*this.weakness);
-		}
-		else{
-			this.health=this.health-weapon.getPower();
-		}
-		if(this.health<=0){
-			this.alive=false;
+		synchronized(monsterHealthLock) {
+			if(weapon.getElement().equals(element)){
+				this.health=this.health-(weapon.getPower()*this.weakness);
+			}
+			else{
+				this.health=this.health-weapon.getPower();
+			}
+			if(this.health<=0){
+				this.alive=false;
+				this.setMonsterState(new DeadState());
+			}
 		}
 	}
 	//need to add an attack function
@@ -108,6 +124,13 @@ public class Monster implements Runnable {
 		boolean run=true;
 		while(run){
 			run=monsterState.doAction();
+			try{
+				Thread.sleep(4000);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				System.err.println(e);
+			}
 		}
 	}
 }

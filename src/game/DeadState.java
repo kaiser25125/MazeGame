@@ -11,7 +11,7 @@ public class DeadState extends State {
 
 	public DeadState(){}
 	public boolean doAction(){
-		System.out.println("dead");
+		System.out.println("attacking");
 		return false;
 	}
 		

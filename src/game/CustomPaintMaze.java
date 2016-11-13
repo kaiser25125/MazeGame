@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Polygon;
@@ -37,6 +38,7 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 	 * Paint function for repainting the maze every time
 	 */
 	public void paint(Graphics g){
+		int yOffSet=10;
 		//initalizations
 		ImageIcon roomLeft;
 		ImageIcon roomForward;
@@ -51,15 +53,50 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 		g.drawImage(roomLeft.getImage(), 0, 0, GuiMaze.gameWidth/3, GuiMaze.gameLength-GuiMaze.getToolBarSize(), null);
 		g.drawImage(roomForward.getImage(), GuiMaze.gameWidth/3, 0, GuiMaze.gameWidth/3, GuiMaze.gameLength-GuiMaze.getToolBarSize(), null);
 		g.drawImage(roomRight.getImage(), GuiMaze.gameWidth-GuiMaze.gameWidth/3, 0, GuiMaze.gameWidth/3, GuiMaze.gameLength-GuiMaze.getToolBarSize(), null);
+		if(master.nextRoomHasMonster()){			
+			Iterator<Monster> iterator=master.getNextRoomMonsters().iterator();
+			Monster currentMonster;
+			int acc=0;
+			int xPosition;
+			int yPosition;
+			int xSize=100;
+			int ySize=100;
+			Rectangle healthBar;
+			int healthWidth;
+			float healthParse=xSize;
+			while(iterator.hasNext()){				
+				currentMonster=iterator.next();
+				if(!(currentMonster.getMonsterState() instanceof DeadState)){					
+					xPosition=GuiMaze.gameWidth/3;
+					xPosition=xPosition+((GuiMaze.gameWidth/master.getNextRoomMonsters().size()/3)*acc);
+					yPosition=GuiMaze.gameLength-GuiMaze.getToolBarSize()-GuiMaze.gameLength/4;
+					g.drawImage(currentMonster.getImage().getImage(), xPosition, yPosition, xSize, ySize,null);
+					
+					//draw the health bars
+					yPosition=yPosition-yOffSet;
+					g.setColor(Color.green);
+					g.drawRect(xPosition, yPosition, xSize, ySize/10);
+					g.setColor(Color.red);
+					healthParse=healthParse*currentMonster.getPercentHealth();
+					healthWidth=(int)healthParse;					
+					g.fillRect(xPosition, yPosition, 50, ySize/10);
+					
+					
+					
+					
+					acc=acc+1;
+				}
+			}
+		}
 		//if the next room has items
 		if(master.nextRoomHasItem()){
 			ArrayList<Item> items=master.getNextRoomItem();
 			Iterator<Item> itemIterator=items.iterator();
-			int acc=0;
-			int xPosition;
-			int yPosition;
-			int xSize=50;
-			int ySize=50;
+			int acc2=0;
+			int xPosition2;
+			int yPosition2;
+			int xSize2=50;
+			int ySize2=50;
 			Item currentItem;
 			Rectangle listener;
 			//for each item
@@ -67,15 +104,15 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 				//get the next item
 				currentItem=itemIterator.next();
 				//calculate where to put it
-				xPosition=GuiMaze.gameWidth/3;
-				xPosition=xPosition+((GuiMaze.gameWidth/items.size()/3)*acc);
-				yPosition=GuiMaze.gameLength-GuiMaze.getToolBarSize()-GuiMaze.gameLength/7;
+				xPosition2=GuiMaze.gameWidth/3;
+				xPosition2=xPosition2+((GuiMaze.gameWidth/items.size()/3)*acc2);
+				yPosition2=GuiMaze.gameLength-GuiMaze.getToolBarSize()-GuiMaze.gameLength/7;
 				//create listener for item
-				listener=new Rectangle(xPosition,yPosition,xSize,ySize);
+				listener=new Rectangle(xPosition2,yPosition2,xSize2,ySize2);
 				itemObservers.addListener(listener);
 				//draw it
-				g.drawImage(currentItem.getImage().getImage(), xPosition, yPosition, xSize, ySize,null);				
-				acc=acc+1;
+				g.drawImage(currentItem.getImage().getImage(), xPosition2, yPosition2, xSize2, ySize2,null);				
+				acc2=acc2+1;
 			}
 		}		
 	}

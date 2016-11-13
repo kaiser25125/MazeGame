@@ -13,6 +13,8 @@ public class User {
 	protected ArrayList<Item> items;
 	protected boolean alive;
 	protected String direction;
+	
+	public Object userHealthLock=new Object();
 	//general constructor
 	public User(int health,String direction){
 		this.health=health;
@@ -20,8 +22,10 @@ public class User {
 		this.alive=true;
 		this.direction=direction;
 	}
-	public int getHealth() {
-		return health;
+	public int getHealth() {		
+		synchronized(userHealthLock){
+			return health;
+		}
 	}
 	public void setHealth(int health) {
 		this.health = health;
@@ -63,11 +67,13 @@ public class User {
 	//changes alive to false if health is less than 0
 	//need to synchronize this
 	public void takeDamage(int damage){
-		this.health=this.health-damage;
-		if(this.health<=0){
-			this.setAlive(false);
-		}		
+		synchronized(userHealthLock){
+			this.health=this.health-damage;
+			if(this.health<=0){
+				this.setAlive(false);
+				System.out.println("dead");
+			}		
+		}
 	}
-	
 	
 }

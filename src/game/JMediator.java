@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class JMediator {
 	private GenerateMaze maze;
 	private MazeFrame game;
+	private CPCMediator painter;
 	/*
 	 * constructor takes no input because it generates all of the important bits
 	 */
@@ -24,16 +25,15 @@ public class JMediator {
 	 * returns true if the user does
 	 */
 	public boolean moveForward(){
-		return game.moveForward();
+		return game.moveForward(this,painter);
 	}
 	//turns the user left
 	public void turnLeft(){		
-		game.turnLeft();		
-		System.out.println(game.nextRoomHasRightHall());
+		game.turnLeft(this,painter);				
 	}
 	//turns the user right
 	public void turnRight(){
-		game.turnRight();
+		game.turnRight(this,painter);
 	}
 	//returns number of rows
 	public int getNumRows(){
@@ -144,5 +144,27 @@ public class JMediator {
 	public Item getNumberItemUser(int x){
 		return game.getNumberItemUser(x);
 	}
+	public CPCMediator getPainter() {
+		return painter;
+	}
+	public void setPainter(CPCMediator painter) {
+		this.painter = painter;
+	}
 	
+	public boolean nextRoomHasMonster(){
+		return this.game.nextRoomHasMonsters();
+	}
+	
+	public ArrayList<Monster> getNextRoomMonsters(){
+		return this.game.nextRoomMonsters();
+	}
+	
+	public void attackMonsters(Item weapon){
+		this.game.attackNextRoomMonsters(weapon);
+	}
+	
+	public void attackUser(int damage){
+		this.game.damageUser(damage);
+		System.out.println(this.game.getPlayer().health);
+	}
 }

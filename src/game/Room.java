@@ -108,24 +108,39 @@ public class Room {
 		this.items = items;
 	}
 	//funciton to activate monster thread in the future
-	public void activateMonsters(){
+	public void activateMonsters(JMediator master,CPCMediator painter){
 		Iterator<Monster> iterator=monster.iterator();
-		Monster dummy;
-		Thread t1;
+		Monster currentMonster;
+		Thread monsterThread;		
 		while(iterator.hasNext()){
-			dummy=iterator.next();
-			if(dummy.getMonsterState()==null || (dummy.getMonsterState() instanceof PausedState)){
+			currentMonster=iterator.next();			
+			if(currentMonster.getMonsterState()==null || (currentMonster.getMonsterState() instanceof PausedState)){
 				System.out.println("activate monsters");
-				dummy.setMonsterState(new AttackingState());
-				t1=new Thread(dummy);
-				t1.start();
+				State newState=new AttackingState();
+				newState.setMaster(master);
+				newState.setPainter(painter);
+				newState.setMonster(currentMonster);
+				currentMonster.setMonsterState(newState);
+				monsterThread=new Thread(currentMonster);
+				monsterThread.start();
 			}
 		}
 		return;
 	}
 	//function to join the monster thread in the future
-	public void deActivateMonster(){
-		//monster.join()
+	public void deActivateMonsters(JMediator master,CPCMediator painter){
+		Iterator<Monster> iterator=monster.iterator();
+		Monster currentMonster;
+		State monsterState;
+		while(iterator.hasNext()){
+			currentMonster=iterator.next();
+			if(currentMonster.getMonsterState() instanceof AttackingState){
+				monsterState=new PausedState();
+				monsterState.setMaster(master);
+				monsterState.setPainter(painter);
+				currentMonster.setMonsterState(monsterState);
+			}
+		}
 		return;
 	}
 	
@@ -155,4 +170,14 @@ public class Room {
 		return returner;
 	}
 
+	public void attackMonsters(Item weapon){
+		Iterator<Monster> iterator=monster.iterator();
+		Monster currentMonster;
+		while(iterator.hasNext()){
+			currentMonster=iterator.next();
+			if(!(currentMonster.getMonsterState() instanceof DeadState)){
+				currentMonster.takeDamage(weapon);
+			}
+		}
+	}
 }
