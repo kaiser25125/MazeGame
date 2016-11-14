@@ -144,25 +144,32 @@ public class JMediator {
 	public Item getNumberItemUser(int x){
 		return game.getNumberItemUser(x);
 	}
+	//getters and setters
 	public CPCMediator getPainter() {
 		return painter;
 	}
 	public void setPainter(CPCMediator painter) {
 		this.painter = painter;
 	}
-	
+	//returns true if the next room has mosnters
 	public boolean nextRoomHasMonster(){
 		return this.game.nextRoomHasMonsters();
 	}
-	
+	//returns an arraylist of the next room's monsters
 	public ArrayList<Monster> getNextRoomMonsters(){
 		return this.game.nextRoomMonsters();
 	}
-	
+	//attacks all of the monsters in the next room
 	public void attackMonsters(Item weapon){
 		this.game.attackNextRoomMonsters(weapon);
 	}
-	
+	//for the health bar
+	//see user method
+	public float getUserPercentHealth(){
+		return this.game.getUserPercentHealth();
+	}
+	//takes an int as input
+	//removes int from the user's health
 	public void attackUser(int damage){
 		this.game.damageUser(damage);
 		System.out.println(this.game.getPlayer().health);

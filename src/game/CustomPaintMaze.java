@@ -53,20 +53,28 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 		g.drawImage(roomLeft.getImage(), 0, 0, GuiMaze.gameWidth/3, GuiMaze.gameLength-GuiMaze.getToolBarSize(), null);
 		g.drawImage(roomForward.getImage(), GuiMaze.gameWidth/3, 0, GuiMaze.gameWidth/3, GuiMaze.gameLength-GuiMaze.getToolBarSize(), null);
 		g.drawImage(roomRight.getImage(), GuiMaze.gameWidth-GuiMaze.gameWidth/3, 0, GuiMaze.gameWidth/3, GuiMaze.gameLength-GuiMaze.getToolBarSize(), null);
+		//draw the monsters for the game
 		if(master.nextRoomHasMonster()){			
 			Iterator<Monster> iterator=master.getNextRoomMonsters().iterator();
 			Monster currentMonster;
+			//values for processing
 			int acc=0;
 			int xPosition;
 			int yPosition;
+			//"constant" for the size of the monsters
 			int xSize=100;
 			int ySize=100;
+			//rect for healthbar
 			Rectangle healthBar;
 			int healthWidth;
+			//parsing float
 			float healthParse=xSize;
+			//while there is a next monster
 			while(iterator.hasNext()){				
 				currentMonster=iterator.next();
-				if(!(currentMonster.getMonsterState() instanceof DeadState)){					
+				//if the monster is not dead
+				if(!(currentMonster.getMonsterState() instanceof DeadState)){
+					//draw all of the monsters
 					xPosition=GuiMaze.gameWidth/3;
 					xPosition=xPosition+((GuiMaze.gameWidth/master.getNextRoomMonsters().size()/3)*acc);
 					yPosition=GuiMaze.gameLength-GuiMaze.getToolBarSize()-GuiMaze.gameLength/4;
@@ -74,13 +82,14 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 					
 					//draw the health bars
 					yPosition=yPosition-yOffSet;
+					//draw outer green
 					g.setColor(Color.green);
 					g.drawRect(xPosition, yPosition, xSize, ySize/10);
 					g.setColor(Color.red);
-					healthParse=healthParse*currentMonster.getPercentHealth();
-					healthWidth=(int)healthParse;					
-					g.fillRect(xPosition, yPosition, 50, ySize/10);
-					
+					//draw the actual health
+					healthParse=healthParse*currentMonster.getPercentHealth();					
+					healthWidth=(int)healthParse;						
+					g.fillRect(xPosition, yPosition, healthWidth, ySize/10);
 					
 					
 					

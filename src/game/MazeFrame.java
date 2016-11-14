@@ -299,7 +299,12 @@ public class MazeFrame {
 			}		
 		}
 	}
-
+	/*
+	 * Activates the monsters in the next room
+	 * takes the two mediators as input
+	 * no return
+	 * starts the threads of the two monsters
+	 */
 	public void activateNextRoomMonsters(JMediator master,CPCMediator painter){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -319,7 +324,10 @@ public class MazeFrame {
 		}
 	}
 	
-
+	/*
+	 * returns whether or not the next room has monsters
+	 * no input
+	 */
 	public boolean nextRoomHasMonsters(){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -337,7 +345,11 @@ public class MazeFrame {
 	}
 
 	
-
+	/*
+	 * returns a list of the next room's monsters
+	 * returns null if there is none
+	 * no input
+	 */
 	public ArrayList<Monster> nextRoomMonsters(){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -353,7 +365,11 @@ public class MazeFrame {
 		}
 		return null;
 	}
-
+	/*
+	 * de activates the monsters in the next room
+	 * takes the mediators as input
+	 * returns nothing
+	 */
 	public void deActivateNextRoomMonsters(JMediator master,CPCMediator painter){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -372,7 +388,12 @@ public class MazeFrame {
 		}
 		}
 	}
-	
+	/*
+	 * takes an item as input
+	 * attacks all of the monsters in the next room
+	 * returns nothing
+	 * does nothing if no forward room
+	 */
 	public void attackNextRoomMonsters(Item weapon){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
@@ -391,7 +412,11 @@ public class MazeFrame {
 		}
 		}
 	}
-	
+	//see user
+	public float getUserPercentHealth(){		
+		return this.player.getPercentHealth();
+	}
+	//see user
 	public void damageUser(int damage){
 		this.player.takeDamage(damage);
 	}

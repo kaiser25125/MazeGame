@@ -22,9 +22,9 @@ public class Monster implements Runnable {
 	private ImageIcon image;
 	//number to multiply damage by if element of weapon = element
 	private int weakness;
-	
+	//int for the starting health of the monster
 	private int maxHealth;
-	
+	//state for what state the monster is in
 	private State monsterState;
 	
 	public Object monsterHealthLock=new Object();
@@ -90,13 +90,17 @@ public class Monster implements Runnable {
 	public State getMonsterState() {
 		return monsterState;
 	}
+	
 	public void setMonsterState(State monsterState) {
 		this.monsterState = monsterState;
 	}
 	
+	//returns float for the percent of health the monster still has
 	public float getPercentHealth(){
 		synchronized(monsterHealthLock){
-			return (this.health/this.maxHealth);
+			float a=this.health;
+			float b=this.maxHealth;
+			return (a/b);
 		}
 	}
 	//need to synchronize this function
@@ -117,13 +121,17 @@ public class Monster implements Runnable {
 			}
 		}
 	}
-	//need to add an attack function
+	//run function for thread
+	//does the action of the state
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		//while the state is returning true
 		boolean run=true;
 		while(run){
+			//do action
 			run=monsterState.doAction();
+			//wait 4 seconds for next attack
 			try{
 				Thread.sleep(4000);
 			}

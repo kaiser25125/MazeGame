@@ -43,7 +43,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		jTopPanel.setBackground(Color.yellow);				
 		//create the bottom part
 		jBottomPanel=new JPanel();
-		jBottomPanel.setBackground(Color.red);
+		jBottomPanel.setBackground(Color.cyan);
 		jBottomPanel.setPreferredSize(new Dimension(gameWidth,getToolBarSize()));
 		jBottomPanel.setLayout(new BorderLayout());
 		//create the graphic mediator
@@ -56,6 +56,8 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		//create the maze pictures
 		CustomPaintMaze pictures=new CustomPaintMaze(master,repainter);
 		repainter.setRoom(pictures);
+		
+		//set the aggregate inside of jMediator for the different states
 		master.setPainter(repainter);
 		//add the top part of the screen
 		jTopPanel.add(pictures, BorderLayout.CENTER);

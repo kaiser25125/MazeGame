@@ -16,8 +16,8 @@ None
 None
 W,E,N
 Room
-Fire ball,orb.jpg,2,fire_Shadow ball,orb.jpg,2,darkness_Rake ball,orb.jpg,2,light
-dragon,gel.png,20,5,darkness,10_Kobold,gel.png,50,5,light,10
+Fire ball,goldbag.png,2,fire_Shadow ball,gem.png,2,darkness_Rake ball,chalice.png,2,light
+dragon,gel.png,100,5,darkness,10_Kobold,kobold1.png,50,5,light,10
 W,S
 Room
 None

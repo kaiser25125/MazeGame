@@ -108,14 +108,18 @@ public class Room {
 		this.items = items;
 	}
 	//funciton to activate monster thread in the future
+	//takes mediators as input
+	//returns nothing
 	public void activateMonsters(JMediator master,CPCMediator painter){
 		Iterator<Monster> iterator=monster.iterator();
 		Monster currentMonster;
 		Thread monsterThread;		
+		//for every monster
 		while(iterator.hasNext()){
-			currentMonster=iterator.next();			
+			currentMonster=iterator.next();
+			//if the monster is paused or hasn't been activated
 			if(currentMonster.getMonsterState()==null || (currentMonster.getMonsterState() instanceof PausedState)){
-				System.out.println("activate monsters");
+				//make the monster attack
 				State newState=new AttackingState();
 				newState.setMaster(master);
 				newState.setPainter(painter);
@@ -127,14 +131,19 @@ public class Room {
 		}
 		return;
 	}
-	//function to join the monster thread in the future
+	//stop all of the monsters
+	//takes mediators as input
+	//no output
 	public void deActivateMonsters(JMediator master,CPCMediator painter){
 		Iterator<Monster> iterator=monster.iterator();
 		Monster currentMonster;
 		State monsterState;
+		//while there are still monsters
 		while(iterator.hasNext()){
 			currentMonster=iterator.next();
+			//if the monster is attacking
 			if(currentMonster.getMonsterState() instanceof AttackingState){
+				//pause the monster
 				monsterState=new PausedState();
 				monsterState.setMaster(master);
 				monsterState.setPainter(painter);
@@ -169,13 +178,17 @@ public class Room {
 		
 		return returner;
 	}
-
+	//subtracts the health from all of the monsters in the room
+	//takes a weapon as input
+	//no output
 	public void attackMonsters(Item weapon){
 		Iterator<Monster> iterator=monster.iterator();
 		Monster currentMonster;
+		//for every monster
 		while(iterator.hasNext()){
 			currentMonster=iterator.next();
 			if(!(currentMonster.getMonsterState() instanceof DeadState)){
+				//if monster alive attack
 				currentMonster.takeDamage(weapon);
 			}
 		}

@@ -13,11 +13,14 @@ public class User {
 	protected ArrayList<Item> items;
 	protected boolean alive;
 	protected String direction;
+	//int for max health
+	protected int maxHealth;
 	
 	public Object userHealthLock=new Object();
 	//general constructor
 	public User(int health,String direction){
 		this.health=health;
+		maxHealth=health;
 		this.items=new ArrayList<Item>();
 		this.alive=true;
 		this.direction=direction;
@@ -27,6 +30,16 @@ public class User {
 			return health;
 		}
 	}
+	//returns float for how much of health is left
+	//no input
+	public float getPercentHealth(){
+		synchronized(userHealthLock){
+			float x=this.health;
+			float y=this.maxHealth;
+			return x/y;
+		}
+	}
+	
 	public void setHealth(int health) {
 		this.health = health;
 	}
@@ -62,10 +75,9 @@ public class User {
 	public void setItems(ArrayList<Item> items) {
 		this.items = items;
 	}
-	//update health bar
-	//takes an int damage
-	//changes alive to false if health is less than 0
-	//need to synchronize this
+	
+	//function for user taking damage
+	//sets alive to false if user has no health
 	public void takeDamage(int damage){
 		synchronized(userHealthLock){
 			this.health=this.health-damage;

@@ -92,7 +92,7 @@ public class GenerateMaze {
 						else{
 							underScrePrsnt=temp;
 							for(int a=0; a<underScrePrsnt.split("_").length; a++){
-								storage=(underScrePrsnt.split("_")[0]).split(",");
+								storage=(underScrePrsnt.split("_")[a]).split(",");
 								monsterName=storage[0];
 								monsterPicture=new ImageIcon(storage[1]);
 								monsterHealth=Integer.parseInt(storage[2]);
