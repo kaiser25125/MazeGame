@@ -407,7 +407,7 @@ public class MazeFrame {
 				this.getCurrentRoom().getS().attackMonsters(weapon);								
 				break;
 			case "W":
-				this.getCurrentRoom().getS().attackMonsters(weapon);												
+				this.getCurrentRoom().getW().attackMonsters(weapon);												
 				break;
 		}
 		}
