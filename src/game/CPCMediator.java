@@ -22,18 +22,19 @@ public class CPCMediator {
 	//dummy construct
 	public CPCMediator(){}
 	//redraw all of the components
-	public void reDraw(){		
-		System.out.println("activated");
+	public void reDraw(){				
 		toolBar.invalidate();
 		toolBar.repaint();
-		if(map!=null){
-			map.invalidate();
-			map.repaint();
-		}
 		if(room!=null){
 			room.invalidate();
 			room.repaint();
 		}
+		
+		if(map!=null){
+			map.invalidate();
+			map.repaint();
+		}
+
 		
 	}
 	//getters and setters	

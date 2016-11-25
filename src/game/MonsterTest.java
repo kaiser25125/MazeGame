@@ -11,7 +11,7 @@ public class MonsterTest {
 	@Test
 	public void test() {
 		//(int health, int power, String name, String element,int weakness,ImageIcon image) {
-		Monster x=new Monster(20,20,"dragon","ice",4,new ImageIcon("orb.jpg"));
+		Monster x=new Monster(20,20,"dragon","ice",4,new ImageIcon("orb.jpg"),new ImageIcon("orb.jpg"));
 		Item orb=new Item("orb",2,"ice",new ImageIcon("orb.jpg"));
 		Item axe=new Item("axe",2,"fire",new ImageIcon("orb.jpg"));
 		x.takeDamage(orb);		

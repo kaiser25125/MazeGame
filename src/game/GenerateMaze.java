@@ -2,6 +2,7 @@ package game;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
@@ -38,6 +39,7 @@ public class GenerateMaze {
 			String element;
 			String monsterName;
 			ImageIcon monsterPicture;
+			ImageIcon monsterPicture2;
 			int monsterHealth;
 			int monsterPower;
 			int monsterMultiplyWeakness;
@@ -82,12 +84,13 @@ public class GenerateMaze {
 							storage=temp.split(",");
 							monsterName=storage[0];
 							monsterPicture=new ImageIcon(storage[1]);
-							monsterHealth=Integer.parseInt(storage[2]);
-							monsterPower=Integer.parseInt(storage[3]);
-							monsterWeakness=storage[4];
-							monsterMultiplyWeakness=Integer.parseInt(storage[5]);
+							monsterPicture2=new ImageIcon(storage[2]);
+							monsterHealth=Integer.parseInt(storage[3]);
+							monsterPower=Integer.parseInt(storage[4]);
+							monsterWeakness=storage[5];
+							monsterMultiplyWeakness=Integer.parseInt(storage[6]);
 							//add monster to room
-							dummy.addMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture));
+							dummy.addMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture,monsterPicture2));
 						}
 						else{
 							underScrePrsnt=temp;
@@ -95,12 +98,13 @@ public class GenerateMaze {
 								storage=(underScrePrsnt.split("_")[a]).split(",");
 								monsterName=storage[0];
 								monsterPicture=new ImageIcon(storage[1]);
-								monsterHealth=Integer.parseInt(storage[2]);
-								monsterPower=Integer.parseInt(storage[3]);
-								monsterWeakness=storage[4];
-								monsterMultiplyWeakness=Integer.parseInt(storage[5]);
+								monsterPicture2=new ImageIcon(storage[2]);
+								monsterHealth=Integer.parseInt(storage[3]);
+								monsterPower=Integer.parseInt(storage[4]);
+								monsterWeakness=storage[5];
+								monsterMultiplyWeakness=Integer.parseInt(storage[6]);								
 								//add monster to room
-								dummy.addMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture));
+								dummy.addMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture,monsterPicture2));
 							}
 						}
 					}
@@ -173,7 +177,29 @@ public class GenerateMaze {
 		}
 	}
 	
-		
+	public ArrayList<Monster> getAllMonsters(){
+		ArrayList<Monster> returner=new ArrayList<>();
+		ArrayList<Monster> dummy;
+		for(int i=0; i<numColumns; i++){
+			for(int t=0; t<numRows; t++){
+				dummy=maze[i][t].getMonsters();
+				for(int j=0; j<dummy.size(); j++){
+					returner.add(dummy.get(j));
+				}
+			}
+		}
+		return returner;
+	}
+	
+	public boolean userHasWon(){
+		ArrayList<Monster> allMons=getAllMonsters();
+		for(int i=0; i<allMons.size(); i++){
+			if(allMons.get(i).getHealth()>0){
+				return false;
+			}
+		}
+		return true;
+	}
 	
 
 	public int getNumRows() {

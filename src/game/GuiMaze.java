@@ -29,7 +29,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 	//mediator to repaint
 	private CPCMediator repainter;
 	//constants for the screen size
-	public final static int gameLength=700;
+	public final static int gameLength=702;
 	public final static int gameWidth=900;
 	//needs the data mediator as input
 	public GuiMaze(JMediator med){
@@ -40,11 +40,12 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		jWhole.setLayout(new BorderLayout());
 		jTopPanel=new JPanel(new BorderLayout());
 		//set color for later
-		jTopPanel.setBackground(Color.yellow);				
+		jTopPanel.setBackground(new Color(236, 230, 40));				
 		//create the bottom part
 		jBottomPanel=new JPanel();
-		jBottomPanel.setBackground(Color.cyan);
-		jBottomPanel.setPreferredSize(new Dimension(gameWidth,getToolBarSize()));
+		jBottomPanel.setBackground(new Color(236, 230, 40));
+		//temp fix for the bottom panel
+		jBottomPanel.setPreferredSize(new Dimension(gameWidth,getToolBarSize()-40));
 		jBottomPanel.setLayout(new BorderLayout());
 		//create the graphic mediator
 		repainter=new CPCMediator();
@@ -59,6 +60,9 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		
 		//set the aggregate inside of jMediator for the different states
 		master.setPainter(repainter);
+		//activate thread for animating monsters
+		MonsterAnimationThread animator=new MonsterAnimationThread(repainter,master.getAllMonsters());		
+		
 		//add the top part of the screen
 		jTopPanel.add(pictures, BorderLayout.CENTER);
 		jWhole.add(jTopPanel,BorderLayout.NORTH);
@@ -66,8 +70,21 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		jWhole.addKeyListener(this);
 		//set the game to be visible
 		jWhole.setVisible(true);		
+		animator.run();
 	}
 	
+	public static Color getColor(Float percent){
+		if(percent>=.8){
+			return Color.green;
+		}
+		if(percent>=.4){
+			return Color.yellow;
+		}
+		if(percent>=0){
+			return Color.red;
+		}
+		return Color.black;
+	}
 	
 	//value for setting how big bottom part of the screen is
 	public static int getToolBarSize(){

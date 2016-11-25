@@ -13,7 +13,7 @@ None
 S,E
 Room
 None
-dragon,gel.png,100,5,darkness,10_Kobold,kobold1.png,50,5,light,10
+dragon,gel.png,kobold1.png,100,1,darkness,10_Kobold,kobold1.png,gel.png,50,1,light,10
 W,E,N
 Room
 Fire ball,goldbag.png,2,fire_Shadow ball,gem.png,2,darkness_Rake ball,chalice.png,2,light

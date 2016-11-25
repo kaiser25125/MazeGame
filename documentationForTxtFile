@@ -6,8 +6,8 @@ Name,Image file for item,damage it deals,element_name,power,element
 ex1:Fire ball,fire.png,5,fire_ice ball,ice.png,2,ice
 ex2:None
 Csv of monsters in the room or None
-Name,Image file for monster,health,damage it deals,element weak to,number to multiply damage by if element used is weakness and an underscore for another or None
-ex1:Kobold,kobold.png,20,5,ice,5
+Name,Image file for monster,Second image for animation,health,damage it deals,element weak to,number to multiply damage by if element used is weakness and an underscore for another or None
+ex1:Kobold,kobold.png,kobold2.png,20,5,ice,5
 ex2:None
 Direction that you can move
 Csv with each direction

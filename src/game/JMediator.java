@@ -174,4 +174,12 @@ public class JMediator {
 		this.game.damageUser(damage);
 		System.out.println(this.game.getPlayer().health);
 	}
+	
+	public ArrayList<Monster> getAllMonsters(){
+		return this.maze.getAllMonsters();
+	}
+	
+	public boolean userHasWon(){
+		return this.maze.userHasWon();
+	}
 }

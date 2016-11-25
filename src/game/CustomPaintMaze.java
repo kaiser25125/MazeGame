@@ -2,6 +2,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Polygon;
 import java.awt.Rectangle;
@@ -38,6 +39,7 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 	 * Paint function for repainting the maze every time
 	 */
 	public void paint(Graphics g){
+		if(master.getUserPercentHealth()>0 && master.userHasWon()==false){
 		int yOffSet=10;
 		//initalizations
 		ImageIcon roomLeft;
@@ -72,6 +74,12 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 			//while there is a next monster
 			while(iterator.hasNext()){				
 				currentMonster=iterator.next();
+				xPosition=0;
+				yPosition=0;
+				xSize=100;
+				ySize=100;
+				healthParse=xSize;
+				healthWidth=0;
 				//if the monster is not dead
 				if(!(currentMonster.getMonsterState() instanceof DeadState)){
 					//draw all of the monsters
@@ -85,14 +93,11 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 					//draw outer green
 					g.setColor(Color.green);
 					g.drawRect(xPosition, yPosition, xSize, ySize/10);
-					g.setColor(Color.red);
+					g.setColor(GuiMaze.getColor(currentMonster.getPercentHealth()));
 					//draw the actual health
 					healthParse=healthParse*currentMonster.getPercentHealth();					
 					healthWidth=(int)healthParse;						
 					g.fillRect(xPosition, yPosition, healthWidth, ySize/10);
-					
-					
-					
 					acc=acc+1;
 				}
 			}
@@ -123,7 +128,16 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 				g.drawImage(currentItem.getImage().getImage(), xPosition2, yPosition2, xSize2, ySize2,null);				
 				acc2=acc2+1;
 			}
-		}		
+		}
+		}
+		else if(master.userHasWon()){
+			g.setFont(new Font("TimesRoman", Font.PLAIN, 100));
+			g.drawString("You Win!!!!", this.getX()+(this.getWidth()/10), this.getY()+this.getHeight()/2);
+		}
+		else if(!master.userHasWon()){
+			g.setFont(new Font("TimesRoman", Font.PLAIN, 100));
+			g.drawString("You Lose!!!!", this.getX()+(this.getWidth()/10), this.getY()+this.getHeight()/2);
+		}
 	}
 	/*
 	 * This is the function for getting the image

@@ -34,19 +34,22 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 		this.painter=med2;		
 		this.graphicItems=new ItemListener();
 		//set the size of the bottom
-		this.setPreferredSize(new Dimension(GuiMaze.gameWidth,GuiMaze.getToolBarSize()));		
+		this.setPreferredSize(new Dimension(GuiMaze.gameWidth,GuiMaze.getToolBarSize()-40));		
 		this.addMouseListener(this);
 	}
 	//paint method for the bottom
 	public void paint(Graphics g){
+		if(master.getUserPercentHealth()>0 && master.userHasWon()==false){
 		this.graphicItems=new ItemListener();
 		g.setColor(Color.black);
 		//variables for messing with the screen
 		int xOffSet=20;
 		int yOffSet=30;
-		int mapButtonHeight=50;
+		int mapButtonHeight=20;
 		int mapButtonWidth=100;
 		int mapButtonOffSet=70;
+		int healthBarWidth=100;
+		int healthBarHeight=10;
 		//make the up arrow
 		int[] xPoints = new int[3];
 		int[] yPoints = new int[3];
@@ -92,12 +95,13 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 		//draw the map button
 		mapButton=new Rectangle(GuiMaze.gameWidth-((int)(GuiMaze.gameWidth*.2)),GuiMaze.getToolBarSize()/4,mapButtonWidth,mapButtonHeight);
 		g.drawRect(mapButton.x, mapButton.y, mapButton.width, mapButton.height);
+		g.drawString("MAP", (int)(mapButton.x+.4*mapButton.width), (int)(mapButton.y+.7*mapButton.height));
 		//draw the user health bar below the map button
 		g.setColor(Color.green);
-		g.drawRect(mapButton.x, mapButton.y+mapButtonOffSet, mapButton.width, mapButton.height);
-		g.setColor(Color.red);
-		int currentHealth=((int)(mapButton.width*master.getUserPercentHealth()));
-		g.fillRect(mapButton.x, mapButton.y+mapButtonOffSet, currentHealth, mapButton.height);
+		g.drawRect(mapButton.x, mapButton.y+mapButtonOffSet, healthBarWidth, healthBarHeight);
+		g.setColor(GuiMaze.getColor(master.getUserPercentHealth()));
+		int currentHealth=((int)(healthBarWidth*master.getUserPercentHealth()));
+		g.fillRect(mapButton.x, mapButton.y+mapButtonOffSet, currentHealth, healthBarHeight);
 		//draw the user's items
 		if(master.getUserItems().size()>0){
 			ArrayList<Item> items=master.getUserItems();
@@ -115,12 +119,13 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 				currentItem=itemIterator.next();
 				xPosition=GuiMaze.gameWidth/3;
 				xPosition=xPosition+((GuiMaze.gameWidth/items.size()/3)*acc);
-				yPosition=GuiMaze.getToolBarSize()/2;
+				yPosition=GuiMaze.getToolBarSize()/3;
 				listener=new Rectangle(xPosition,yPosition,xSize,ySize);
 				graphicItems.addListener(listener);				
 				g.drawImage(currentItem.getImage().getImage(), xPosition, yPosition, xSize, ySize,null);				
 				acc=acc+1;
 			}
+		}
 		}
 	}
 	//all mouse click events for the game

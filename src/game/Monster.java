@@ -20,16 +20,19 @@ public class Monster implements Runnable {
 	private String element;
 	//image of monster
 	private ImageIcon image;
+	
+	private ImageIcon image2;
 	//number to multiply damage by if element of weapon = element
 	private int weakness;
 	//int for the starting health of the monster
 	private int maxHealth;
 	//state for what state the monster is in
 	private State monsterState;
+		
 	
 	public Object monsterHealthLock=new Object();
 	//general constructor
-	public Monster(int health, int power, String name, String element,int weakness,ImageIcon image) {
+	public Monster(int health, int power, String name, String element,int weakness,ImageIcon image,ImageIcon image2) {
 		this.image=image;
 		this.health = health;
 		this.maxHealth=health;
@@ -38,6 +41,7 @@ public class Monster implements Runnable {
 		this.element = element;
 		this.weakness=weakness;
 		this.alive=true;
+		this.image2=image2;
 	}
 	//general getters and setters
 	public int getHealth() {
@@ -71,6 +75,12 @@ public class Monster implements Runnable {
 	}
 	public void setImage(ImageIcon image) {
 		this.image = image;
+	}
+	
+	public void switchImage(){
+		ImageIcon dummy=this.image;
+		this.image=this.image2;
+		this.image2=dummy;
 	}
 	
 	public boolean isAlive() {
