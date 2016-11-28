@@ -94,7 +94,8 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 					g.setColor(Color.white);
 					g.fillRect(xPosition, yPosition-2*yOffSet, xSize, ySize/8);
 					g.setColor(Color.black);
-					g.drawString(currentMonster.getElement(), xPosition+25, yPosition-yOffSet);
+					g.setFont(new Font("TimesRoman", Font.PLAIN, 12));
+					g.drawString("Weak: "+currentMonster.getElement(), xPosition+5, yPosition-yOffSet);
 					//draw outer green
 					g.setColor(Color.green);
 					g.drawRect(xPosition, yPosition, xSize, ySize/10);
