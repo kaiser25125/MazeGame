@@ -96,12 +96,18 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 		mapButton=new Rectangle(GuiMaze.gameWidth-((int)(GuiMaze.gameWidth*.2)),GuiMaze.getToolBarSize()/4,mapButtonWidth,mapButtonHeight);
 		g.drawRect(mapButton.x, mapButton.y, mapButton.width, mapButton.height);
 		g.drawString("MAP", (int)(mapButton.x+.4*mapButton.width), (int)(mapButton.y+.7*mapButton.height));
+		//write health
+		g.setColor(Color.black);
+		g.drawString("Health", mapButton.x, mapButton.y+mapButtonOffSet-3);
 		//draw the user health bar below the map button
 		g.setColor(Color.green);
 		g.drawRect(mapButton.x, mapButton.y+mapButtonOffSet, healthBarWidth, healthBarHeight);
 		g.setColor(GuiMaze.getColor(master.getUserPercentHealth()));
 		int currentHealth=((int)(healthBarWidth*master.getUserPercentHealth()));
 		g.fillRect(mapButton.x, mapButton.y+mapButtonOffSet, currentHealth, healthBarHeight);
+		g.setColor(Color.black);
+		//draw the number of items left to be taken
+		g.drawString("Inventory left: "+Integer.toString((master.getMaxUserItems()-master.getUserItems().size())), this.getX()+this.getWidth()/3, this.getY()+this.getHeight()/3);
 		//draw the user's items
 		if(master.getUserItems().size()>0){
 			ArrayList<Item> items=master.getUserItems();
@@ -134,30 +140,25 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub	
 		Item clickedItem;
-		if(arrow.UpClicked(arg0.getPoint())){
-			System.out.println("up");
+		if(arrow.UpClicked(arg0.getPoint())){			
 			master.moveForward();	
 			painter.reDraw();
 		}
-		if(arrow.LeftClicked(arg0.getPoint())){
-			System.out.println("left");
+		if(arrow.LeftClicked(arg0.getPoint())){			
 			master.turnLeft();
 			painter.reDraw();
 		}
-		if(arrow.RightClicked(arg0.getPoint())){
-			System.out.println("right");
+		if(arrow.RightClicked(arg0.getPoint())){			
 			master.turnRight();
 			painter.reDraw();
 		}
 		
-		if(mapButton.contains(arg0.getPoint())){
-			System.out.println("map");
+		if(mapButton.contains(arg0.getPoint())){			
 			map=new GenerateMap(master,painter);
 			painter.reDraw();
 		}
 		//if user has items
-		if(graphicItems.getItems().size()>0){	
-			System.out.println("Bottom screen click 2");
+		if(graphicItems.getItems().size()>0){				
 			//if user clicked item
 			if(graphicItems.getClickedNumber(arg0.getPoint())>-1){
 				//if user left clicked attack
@@ -177,6 +178,11 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 						master.addItemToNextRoom(clickedItem);
 						painter.reDraw();
 					}
+				}
+				//click to find out info of item
+				if(SwingUtilities.isMiddleMouseButton(arg0)){
+					clickedItem=master.getNumberItemUser(graphicItems.getClickedNumber(arg0.getPoint()));
+					ItemFrame frame=new ItemFrame(clickedItem);
 				}
 			}
 		}

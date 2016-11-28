@@ -18,7 +18,7 @@ public class JMediator {
 		maze=new GenerateMaze();
 		game=new MazeFrame();
 		game.setCurrentRoom(maze.getStartRoom());
-		game.setPlayer(new User(maze.getUserHealth(),"N"));
+		game.setPlayer(new User(maze.getUserHealth(),"N",maze.getMaxItems()));
 	}
 	/*
 	 * move forward from mazeframe
@@ -171,15 +171,22 @@ public class JMediator {
 	//takes an int as input
 	//removes int from the user's health
 	public void attackUser(int damage){
-		this.game.damageUser(damage);
-		System.out.println(this.game.getPlayer().health);
+		this.game.damageUser(damage);		
 	}
-	
+	//gets all of the monsters in the game
 	public ArrayList<Monster> getAllMonsters(){
 		return this.maze.getAllMonsters();
 	}
-	
+	//gets whether or not all of the monsters are dead and therefore whether the user has won
 	public boolean userHasWon(){
 		return this.maze.userHasWon();
+	}
+	//gets whether or not the user is at their maximum number of items
+	public boolean userAtMaxItems(){
+		return this.game.atMaxItems();
+	}
+	//gets the maximum number of items of the user
+	public int getMaxUserItems(){
+		return this.game.player.maxItems;
 	}
 }

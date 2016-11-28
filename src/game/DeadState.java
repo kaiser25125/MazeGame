@@ -14,8 +14,7 @@ public class DeadState extends State {
 
 	public DeadState(){}
 	//doAction for overriding the super
-	public boolean doAction(){
-		System.out.println("attacking");
+	public boolean doAction(){		
 		return false;
 	}
 		

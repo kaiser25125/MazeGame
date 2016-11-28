@@ -9,7 +9,7 @@ public class MazeFrameTest {
 	@Test
 	public void test() {
 		MazeFrame x=new MazeFrame();
-		User y=new User(20,"N");
+		User y=new User(20,"N",7);
 		x.setPlayer(y);
 		/*
 		x.turnRight();

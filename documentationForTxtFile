@@ -18,6 +18,7 @@ Health of player
 Room to start in
 row,column
 0,1
-
+Maximum number of items
+2
 
 (ex1 and ex2 will not be in the text file)

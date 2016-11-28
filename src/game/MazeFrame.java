@@ -437,4 +437,8 @@ public class MazeFrame {
 		}
 		return null;
 	}
+	
+	public boolean atMaxItems(){
+		return this.player.items.size()>=this.player.maxItems;
+	}
 }

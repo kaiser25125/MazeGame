@@ -23,8 +23,7 @@ public class AttackingState extends State {
 	 * master and painter must have been set
 	 * returns true for making sure the monsters keep attacking
 	 */
-	public boolean doAction(){
-		System.out.println("attacking");
+	public boolean doAction(){		
 		master.attackUser(this.getMonster().getPower());
 		painter.reDraw();
 		return true;

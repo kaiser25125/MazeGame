@@ -15,15 +15,17 @@ public class User {
 	protected String direction;
 	//int for max health
 	protected int maxHealth;
+	protected int maxItems;
 	
 	public Object userHealthLock=new Object();
 	//general constructor
-	public User(int health,String direction){
+	public User(int health,String direction,int maxItems){
 		this.health=health;
 		maxHealth=health;
 		this.items=new ArrayList<Item>();
 		this.alive=true;
 		this.direction=direction;
+		this.maxItems=maxItems;
 	}
 	public int getHealth() {		
 		synchronized(userHealthLock){
@@ -82,8 +84,7 @@ public class User {
 		synchronized(userHealthLock){
 			this.health=this.health-damage;
 			if(this.health<=0){
-				this.setAlive(false);
-				System.out.println("dead");
+				this.setAlive(false);				
 			}		
 		}
 	}

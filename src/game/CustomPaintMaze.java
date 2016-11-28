@@ -90,6 +90,11 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 					
 					//draw the health bars
 					yPosition=yPosition-yOffSet;
+					//draw element weak to
+					g.setColor(Color.white);
+					g.fillRect(xPosition, yPosition-2*yOffSet, xSize, ySize/8);
+					g.setColor(Color.black);
+					g.drawString(currentMonster.getElement(), xPosition+25, yPosition-yOffSet);
 					//draw outer green
 					g.setColor(Color.green);
 					g.drawRect(xPosition, yPosition, xSize, ySize/10);
@@ -98,6 +103,8 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 					healthParse=healthParse*currentMonster.getPercentHealth();					
 					healthWidth=(int)healthParse;						
 					g.fillRect(xPosition, yPosition, healthWidth, ySize/10);
+
+
 					acc=acc+1;
 				}
 			}
@@ -130,10 +137,12 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 			}
 		}
 		}
+		//if the user has won the game
 		else if(master.userHasWon()){
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 100));
 			g.drawString("You Win!!!!", this.getX()+(this.getWidth()/10), this.getY()+this.getHeight()/2);
 		}
+		//if the user died
 		else if(!master.userHasWon()){
 			g.setFont(new Font("TimesRoman", Font.PLAIN, 100));
 			g.drawString("You Lose!!!!", this.getX()+(this.getWidth()/10), this.getY()+this.getHeight()/2);
@@ -203,20 +212,19 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 	//mouse listener for the items
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		Item clickedItem;
-		System.out.println("Top screen click");
+		Item clickedItem;		
 		//if next room has items
-		if(itemObservers.getItems().size()>0){	
-			System.out.println("Top screen click 2");
+		if(itemObservers.getItems().size()>0){				
 			//if one of them was clicked
-			if(itemObservers.getClickedNumber(arg0.getPoint())>-1){
-				System.out.println("Top screen click 3");
+			if(itemObservers.getClickedNumber(arg0.getPoint())>-1){				
 				clickedItem=master.getNumberItemNextRoom(itemObservers.getClickedNumber(arg0.getPoint()));
 				//add the item to user and remove from room
-				master.addItemToUser(clickedItem);
-				master.removeItemFromNextRoom(clickedItem);
-				//then repaint
-				painter.reDraw();
+				if(!master.userAtMaxItems()){
+					master.addItemToUser(clickedItem);
+					master.removeItemFromNextRoom(clickedItem);
+					//then repaint
+					painter.reDraw();
+				}
 			}
 		}
 	}

@@ -19,6 +19,7 @@ public class GenerateMaze {
 	private int numRows;
 	private int numColumns;
 	private int userHealth;
+	private int maxItems;
 	public GenerateMaze(){
 		String temp;
 		String storage[];
@@ -122,6 +123,9 @@ public class GenerateMaze {
 			this.userHealth=Integer.parseInt(temp);
 			temp=in.readLine();
 			this.startRoom=getRoomAtLocation(temp);
+			temp=in.readLine();
+			this.maxItems=Integer.parseInt(temp);
+			
 			in.close();
 		}
 		catch(Exception e){
@@ -142,7 +146,9 @@ public class GenerateMaze {
 		return startRoom;
 	}
 
-
+	public int getMaxItems(){
+		return this.maxItems;
+	}
 
 	public void setStartRoom(Room startRoom) {
 		this.startRoom = startRoom;

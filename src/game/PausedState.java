@@ -12,8 +12,7 @@ public class PausedState extends State {
 		
 	}
 	//return false for stopping the thread
-	public boolean doAction(){
-		System.out.println("paused");
+	public boolean doAction(){		
 		return false;
 	}
 	

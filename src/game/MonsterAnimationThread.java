@@ -5,12 +5,15 @@ import java.util.ArrayList;
 public class MonsterAnimationThread implements Runnable {
 	private CPCMediator repatiner;
 	private ArrayList<Monster> monsters;
-	
+	/*
+	 * thread for animating monster
+	 * takes the cpc mediator as input and the arraylist of all monsters to animate
+	 */
 	public MonsterAnimationThread(CPCMediator repainter, ArrayList<Monster> monsters){
 		this.monsters=monsters;
 		this.repatiner=repainter;
 	}
-
+	//every two seconds switch the images
 	@Override
 	public void run() {
 		while(true){

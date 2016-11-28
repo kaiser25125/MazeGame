@@ -10,7 +10,7 @@ public class UserTest {
 
 	@Test
 	public void test() {
-		User x=new User(20,"N");
+		User x=new User(20,"N",7);
 		assertTrue(x.isAlive());
 		x.takeDamage(20);
 		assertFalse(x.isAlive());
