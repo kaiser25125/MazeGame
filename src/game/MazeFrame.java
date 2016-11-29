@@ -64,15 +64,19 @@ public class MazeFrame {
 		switch(player.getDirection()){
 			case "N":
 				this.currentRoom=this.currentRoom.getN();
+				activateNextRoomMonsters(master,painter);
 				return true;
 			case "W":
 				this.currentRoom=this.currentRoom.getW();
+				activateNextRoomMonsters(master,painter);
 				return true;
 			case "S":
 				this.currentRoom=this.currentRoom.getS();
+				activateNextRoomMonsters(master,painter);
 				return true;			
 			case "E":			
 				this.currentRoom=this.currentRoom.getE();
+				activateNextRoomMonsters(master,painter);
 				return true;						
 			}
 		activateNextRoomMonsters(master,painter);

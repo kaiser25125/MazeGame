@@ -20,8 +20,8 @@ public class GenerateMap {
 	protected JPanel gamePanel;
 	private CPCMediator painter;
 	//constants for the sizes of the rooms
-	public final static int roomLength=200;
-	public final static int roomWidth=200;
+	public final static int roomLength=100;
+	public final static int roomWidth=100;
 	//constructor for the class
 	//takes a generateMaze as input and mazeFrame to know location
 	//output is a jFrame of the maze
