@@ -1,7 +1,7 @@
 6,6
 Room
 None
-None
+Gel,gelatinousCube1.png,gelatinousCube2.png,20,1,darkness,10
 S,E
 Room
 None
@@ -16,7 +16,7 @@ None
 None
 S,N
 Room
-None
+Cursed Gem,gem.png,2,darkness_Light chalice,chalice.png,3,light
 None
 S,N
 Room
@@ -40,8 +40,8 @@ None
 None
 S,N
 Room
-None
-None
+Ice Vase,healthPotion.png,5,ice
+kobold,kobold1.png,kobold2.png,30,1,ice,8
 S,E,N
 Room
 None
@@ -100,7 +100,7 @@ None
 None
 S,W,E
 Room
-None
+Bag of Blunt Metal,goldbag.png,5,blunt
 None
 S,N,W,E
 Room
@@ -121,7 +121,7 @@ None
 E,W
 Room
 None
-None
+skeleton,skeleton1.png,skeleton2.png,50,6,blunt,3
 S,W
 Room
 None
@@ -141,7 +141,7 @@ None
 S,W,N
 Room
 None
-gel,gel.png,kobold1.png,100,1,darkness,10
+onyxWyrm,onyxWyrm1.png,onyxWyrm2.png,50,3,light,3
 N,W
 20
 5,0
