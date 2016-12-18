@@ -3,13 +3,13 @@ package game;
 import java.util.ArrayList;
 
 public class MonsterAnimationThread implements Runnable {
-	private CPCMediator repatiner;
+	private CPCObserver repatiner;
 	private ArrayList<Monster> monsters;
 	/*
 	 * thread for animating monster
 	 * takes the cpc mediator as input and the arraylist of all monsters to animate
 	 */
-	public MonsterAnimationThread(CPCMediator repainter, ArrayList<Monster> monsters){
+	public MonsterAnimationThread(CPCObserver repainter, ArrayList<Monster> monsters){
 		this.monsters=monsters;
 		this.repatiner=repainter;
 	}

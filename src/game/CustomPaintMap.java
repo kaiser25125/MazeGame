@@ -9,13 +9,13 @@ import javax.swing.JComponent;
  * this is the custom painted component for the map
  * it will create the map inside of a jFrame
  */
-public class CustomPaintRooms extends JComponent {
+public class CustomPaintMap extends JComponent {
 	//need these for observing
 	
-	private JMediator master;
+	private GameMediator master;
 	//takes a generateMaze and mazeframe as input
 	//output is that it paints the maze in a picture form
-	public CustomPaintRooms(JMediator master){
+	public CustomPaintMap(GameMediator master){
 		this.master=master;
 		
 		this.setMinimumSize((new Dimension(master.getNumColumns()*GenerateMap.roomWidth,master.getNumRows()*GenerateMap.roomLength)));

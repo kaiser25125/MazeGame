@@ -110,7 +110,7 @@ public class Room {
 	//funciton to activate monster thread in the future
 	//takes mediators as input
 	//returns nothing
-	public void activateMonsters(JMediator master,CPCMediator painter){
+	public void activateMonsters(GameMediator master,CPCObserver painter){
 		Iterator<Monster> iterator=monster.iterator();
 		Monster currentMonster;
 		Thread monsterThread;		
@@ -134,7 +134,7 @@ public class Room {
 	//stop all of the monsters
 	//takes mediators as input
 	//no output
-	public void deActivateMonsters(JMediator master,CPCMediator painter){
+	public void deActivateMonsters(GameMediator master,CPCObserver painter){
 		Iterator<Monster> iterator=monster.iterator();
 		Monster currentMonster;
 		State monsterState;

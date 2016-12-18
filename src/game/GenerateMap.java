@@ -14,18 +14,18 @@ import javax.swing.JPanel;
 
 public class GenerateMap {
 	//need the mediator for information
-	protected JMediator master;
+	protected GameMediator master;
 	//a frame and a panel for the storage
 	protected JFrame frame;
 	protected JPanel gamePanel;
-	private CPCMediator painter;
+	private CPCObserver painter;
 	//constants for the sizes of the rooms
 	public final static int roomLength=100;
 	public final static int roomWidth=100;
 	//constructor for the class
 	//takes a generateMaze as input and mazeFrame to know location
 	//output is a jFrame of the maze
-	public GenerateMap(JMediator master, CPCMediator painter){
+	public GenerateMap(GameMediator master, CPCObserver painter){
 		//need the mediators for info
 		this.master=master;
 		this.painter=painter;
@@ -39,7 +39,7 @@ public class GenerateMap {
 		//gamePanel.setPreferredSize(new Dimension(maze.getNumColumns()*roomWidth,maze.getNumRows()*roomLength));				
 		frame.add(gamePanel, BorderLayout.CENTER);
 		//create custom painted component
-		CustomPaintRooms locations=new CustomPaintRooms(master);
+		CustomPaintMap locations=new CustomPaintMap(master);
 		painter.setMap(locations);
 		gamePanel.setLayout(new BorderLayout());
 		gamePanel.add(locations, BorderLayout.CENTER);				

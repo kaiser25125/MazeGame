@@ -17,7 +17,7 @@ public class MazeFrame {
 	}
 	//makes the user turn right
 	//no in or out
-	public void turnRight(JMediator master,CPCMediator painter){
+	public void turnRight(GameMediator master,CPCObserver painter){
 		deActivateNextRoomMonsters(master,painter);
 		switch(player.getDirection()){
 		case "N":
@@ -37,7 +37,7 @@ public class MazeFrame {
 	}
 	//makes the user turn left
 	//no in or out
-	public void turnLeft(JMediator master,CPCMediator painter){
+	public void turnLeft(GameMediator master,CPCObserver painter){
 		deActivateNextRoomMonsters(master,painter);
 		switch(player.getDirection()){
 		case "N":
@@ -58,7 +58,7 @@ public class MazeFrame {
 	//makes the user go into the next room they are facing if they can
 	//no input
 	//returns whether or not user entered the room
-	public boolean moveForward(JMediator master,CPCMediator painter){
+	public boolean moveForward(GameMediator master,CPCObserver painter){
 		if(hasForwardHall()){
 			deActivateNextRoomMonsters(master,painter);
 		switch(player.getDirection()){
@@ -309,7 +309,7 @@ public class MazeFrame {
 	 * no return
 	 * starts the threads of the two monsters
 	 */
-	public void activateNextRoomMonsters(JMediator master,CPCMediator painter){
+	public void activateNextRoomMonsters(GameMediator master,CPCObserver painter){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
 			case "N":
@@ -374,7 +374,7 @@ public class MazeFrame {
 	 * takes the mediators as input
 	 * returns nothing
 	 */
-	public void deActivateNextRoomMonsters(JMediator master,CPCMediator painter){
+	public void deActivateNextRoomMonsters(GameMediator master,CPCObserver painter){
 		if(this.hasForwardHall()){
 			switch(this.getPlayer().getDirection()){
 			case "N":
@@ -441,7 +441,10 @@ public class MazeFrame {
 		}
 		return null;
 	}
-	
+	/*
+	 * no input
+	 * returns whether user has the maximum number of items
+	 */
 	public boolean atMaxItems(){
 		return this.player.items.size()>=this.player.maxItems;
 	}

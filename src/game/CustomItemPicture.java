@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JComponent;
 /*
- * custom painted component for displaying the items info
+ * custom painted component for displaying an items info inside of the game
  * used in item frame
  */
 public class CustomItemPicture extends JComponent {
@@ -12,15 +12,23 @@ public class CustomItemPicture extends JComponent {
 	public CustomItemPicture(Item display){
 		itemToDescr=display;
 	}
-	
+	public static final int cipPicSize=50;
 	public void paint(Graphics g){
 		//draw the image
-		g.drawImage(itemToDescr.getImage().getImage(), this.getX()+this.getWidth()/3, this.getY()+this.getHeight()/4,50,50, null);
+		int xPosition=this.getX()+this.getWidth()/3;
+		int yPosition=this.getY()+this.getHeight()/4;
+		g.drawImage(itemToDescr.getImage().getImage(), xPosition, yPosition,cipPicSize,cipPicSize, null);
 		//name
-		g.drawString("Name: "+itemToDescr.getName(), this.getX()+this.getWidth()/4, this.getY()+this.getHeight()/2);
+		xPosition=this.getX()+this.getWidth()/4;
+		yPosition=this.getY()+this.getHeight()/2;
+		g.drawString("Name: "+itemToDescr.getName(), xPosition, yPosition);
 		//power/ damage item does
-		g.drawString("Power: "+Integer.toString(itemToDescr.getPower()),this.getX()+this.getWidth()/4, this.getY()+this.getHeight()/2+20);
+		xPosition=this.getX()+this.getWidth()/4;
+		yPosition=this.getY()+this.getHeight()/2+20;
+		g.drawString("Power: "+Integer.toString(itemToDescr.getPower()),xPosition, yPosition);		
 		//what element the weapon is of
-		g.drawString("Element: "+itemToDescr.getElement(),this.getX()+this.getWidth()/4, this.getY()+this.getHeight()/2+40);
+		xPosition=this.getX()+this.getWidth()/4;
+		yPosition=this.getY()+this.getHeight()/2+40;
+		g.drawString("Element: "+itemToDescr.getElement(),xPosition, yPosition);
 	}
 }

@@ -2,25 +2,25 @@ package game;
 /*
  * mediator for drawing the different parts of the game graphically
  */
-public class CPCMediator {
+public class CPCObserver {
 	//all of the different parts that can be stored to redraw
 	private CustomPaintMaze room;
 	private CustomPaintToolBar toolBar;
-	private CustomPaintRooms map;
+	private CustomPaintMap map;
 	//all of the constructors take custom painted components if they have parameters
 	
 	//construct with the map
-	public CPCMediator(CustomPaintToolBar bar,CustomPaintRooms map){
+	public CPCObserver(CustomPaintToolBar bar,CustomPaintMap map){
 		toolBar=bar;
 		map=this.map;
 	}
 	//construct without the map
-	public CPCMediator(CustomPaintToolBar bar){
+	public CPCObserver(CustomPaintToolBar bar){
 		toolBar=bar;
 		map=null;
 	}
 	//dummy construct
-	public CPCMediator(){}
+	public CPCObserver(){}
 	//redraw all of the components
 	public void reDraw(){	
 		if(room!=null){
@@ -53,11 +53,11 @@ public class CPCMediator {
 		this.toolBar = toolBar;
 	}
 
-	public CustomPaintRooms getMap() {
+	public CustomPaintMap getMap() {
 		return map;
 	}
 
-	public void setMap(CustomPaintRooms map) {
+	public void setMap(CustomPaintMap map) {
 		this.map = map;
 	}
 	

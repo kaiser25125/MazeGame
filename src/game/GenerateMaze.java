@@ -21,16 +21,16 @@ public class GenerateMaze {
 	private int userHealth;
 	private int maxItems;
 	public GenerateMaze(){
-		String temp;
+		String tempString;
 		String storage[];
 		Room dummy;
-		String underScrePrsnt;
+		String underScrePrsntStr;
 		try{
 			BufferedReader in=new BufferedReader(new FileReader("info.txt"));
-			temp=in.readLine();
+			tempString=in.readLine();
 			//get number of rows and columns from the text file
-			numRows=Integer.parseInt(temp.split(",")[0]);
-			numColumns=Integer.parseInt(temp.split(",")[1]);
+			numRows=Integer.parseInt(tempString.split(",")[0]);
+			numColumns=Integer.parseInt(tempString.split(",")[1]);
 			maze=new Room[numColumns][numRows];
 			//initalizations for getting the strings from the text files
 			//identifiers let you know what is being got
@@ -48,14 +48,14 @@ public class GenerateMaze {
 			//for all rooms
 			for(int i=0; i<numColumns; i++){
 				for(int t=0; t<numRows; t++){
-					temp=in.readLine();
+					tempString=in.readLine();
 					dummy=new Room();
-					temp=in.readLine();
+					tempString=in.readLine();
 					//if an item
-					if(!temp.equals("None")){
+					if(!tempString.equals("None")){
 						//if one item
-						if(!temp.contains("_")){
-							storage=temp.split(",");
+						if(!tempString.contains("_")){
+							storage=tempString.split(",");
 							name=storage[0];
 							itemPicture=new ImageIcon(storage[1]);
 							power=Integer.parseInt(storage[2]);
@@ -65,10 +65,10 @@ public class GenerateMaze {
 						}
 						//if more than one item
 						else{
-							underScrePrsnt=temp;
-							for(int a=0; a<underScrePrsnt.split("_").length; a++){
-								temp=underScrePrsnt.split("_")[a];
-								storage=temp.split(",");
+							underScrePrsntStr=tempString;
+							for(int a=0; a<underScrePrsntStr.split("_").length; a++){
+								tempString=underScrePrsntStr.split("_")[a];
+								storage=tempString.split(",");
 								name=storage[0];
 								itemPicture=new ImageIcon(storage[1]);
 								power=Integer.parseInt(storage[2]);
@@ -78,11 +78,11 @@ public class GenerateMaze {
 							}
 						}
 					}
-					temp=in.readLine();
+					tempString=in.readLine();
 					//if there is a monster
-					if(!temp.equals("None")){
-						if(!temp.contains("_")){
-							storage=temp.split(",");
+					if(!tempString.equals("None")){
+						if(!tempString.contains("_")){
+							storage=tempString.split(",");
 							monsterName=storage[0];
 							monsterPicture=new ImageIcon(storage[1]);
 							monsterPicture2=new ImageIcon(storage[2]);
@@ -94,9 +94,9 @@ public class GenerateMaze {
 							dummy.addMonster(new Monster(monsterHealth,monsterPower,monsterName,monsterWeakness,monsterMultiplyWeakness,monsterPicture,monsterPicture2));
 						}
 						else{
-							underScrePrsnt=temp;
-							for(int a=0; a<underScrePrsnt.split("_").length; a++){
-								storage=(underScrePrsnt.split("_")[a]).split(",");
+							underScrePrsntStr=tempString;
+							for(int a=0; a<underScrePrsntStr.split("_").length; a++){
+								storage=(underScrePrsntStr.split("_")[a]).split(",");
 								monsterName=storage[0];
 								monsterPicture=new ImageIcon(storage[1]);
 								monsterPicture2=new ImageIcon(storage[2]);
@@ -109,8 +109,8 @@ public class GenerateMaze {
 							}
 						}
 					}
-					temp=in.readLine();
-					storage=temp.split(",");
+					tempString=in.readLine();
+					storage=tempString.split(",");
 					//add valid room links links
 					for(int b=0; b<storage.length; b++){
 						dummy.addValidDirection(storage[b]);
@@ -119,12 +119,12 @@ public class GenerateMaze {
 					maze[i][t]=dummy;
 				}
 			}
-			temp=in.readLine();
-			this.userHealth=Integer.parseInt(temp);
-			temp=in.readLine();
-			this.startRoom=getRoomAtLocation(temp);
-			temp=in.readLine();
-			this.maxItems=Integer.parseInt(temp);
+			tempString=in.readLine();
+			this.userHealth=Integer.parseInt(tempString);
+			tempString=in.readLine();
+			this.startRoom=getRoomAtLocation(tempString);
+			tempString=in.readLine();
+			this.maxItems=Integer.parseInt(tempString);
 			
 			in.close();
 		}
@@ -182,7 +182,12 @@ public class GenerateMaze {
 			}
 		}
 	}
-	
+	/*
+	 * returns an arrayList of all the monsters in the game
+	 * needs to have been constructed
+	 * no input
+	 * returns an arraylist
+	 */
 	public ArrayList<Monster> getAllMonsters(){
 		ArrayList<Monster> returner=new ArrayList<>();
 		ArrayList<Monster> dummy;
@@ -196,7 +201,11 @@ public class GenerateMaze {
 		}
 		return returner;
 	}
-	
+	/*
+	 * determines if the user has won by checking to see if all of the monsters in the maze are dead
+	 * no input
+	 * returns true or false
+	 */
 	public boolean userHasWon(){
 		ArrayList<Monster> allMons=getAllMonsters();
 		for(int i=0; i<allMons.size(); i++){

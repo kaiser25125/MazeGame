@@ -3,6 +3,7 @@ package game;
 import javax.swing.ImageIcon;
 /*
  * items to use as weapons for the player
+ * generated in the text file
  */
 public class Item {
 	//name of item

@@ -6,14 +6,14 @@ import java.util.ArrayList;
  * this is a mediator that will hold the generated maze and the mazeframe
  * 
  */
-public class JMediator {
+public class GameMediator {
 	private GenerateMaze maze;
 	private MazeFrame game;
-	private CPCMediator painter;
+	private CPCObserver painter;
 	/*
 	 * constructor takes no input because it generates all of the important bits
 	 */
-	public JMediator(){
+	public GameMediator(){
 		//create the data version of the game
 		maze=new GenerateMaze();
 		game=new MazeFrame();
@@ -25,7 +25,7 @@ public class JMediator {
 	 * returns true if the user does
 	 */
 	public boolean moveForward(){
-		return game.moveForward(this,painter);
+		return game.moveForward(this,painter);		
 	}
 	//turns the user left
 	public void turnLeft(){		
@@ -145,10 +145,10 @@ public class JMediator {
 		return game.getNumberItemUser(x);
 	}
 	//getters and setters
-	public CPCMediator getPainter() {
+	public CPCObserver getPainter() {
 		return painter;
 	}
-	public void setPainter(CPCMediator painter) {
+	public void setPainter(CPCObserver painter) {
 		this.painter = painter;
 	}
 	//returns true if the next room has mosnters

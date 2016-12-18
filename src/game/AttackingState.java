@@ -2,15 +2,16 @@ package game;
 
 public class AttackingState extends State {
 	/*
-	 * This is the state that is for when the monsters are attacking the user
+	 * This is one of the states a monster can have
+	 * This one is for when the monster is attacking the user
 	 * has the same requirements as state
 	 */
 	
 	/*
 	 * this is the constructor
-	 * requires the JMediator and the CPCMediator
+	 * requires the JMediator and the CPCObserver
 	 */
-	public AttackingState(JMediator master, CPCMediator painter) {
+	public AttackingState(GameMediator master, CPCObserver painter) {
 		super(master, painter);
 		// TODO Auto-generated constructor stub
 	}
@@ -24,7 +25,9 @@ public class AttackingState extends State {
 	 * returns true for making sure the monsters keep attacking
 	 */
 	public boolean doAction(){		
+		//damage user
 		master.attackUser(this.getMonster().getPower());
+		//call redraw
 		painter.reDraw();
 		return true;
 	}

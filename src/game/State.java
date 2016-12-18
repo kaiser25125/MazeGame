@@ -6,11 +6,11 @@ package game;
  * has monster for damage calculation
  */
 public abstract class State {	
-	protected JMediator master;
-	protected CPCMediator painter;
+	protected GameMediator master;
+	protected CPCObserver painter;
 	protected Monster monster;
-	//takes the mediators as input for constructor
-	public State(JMediator master, CPCMediator painter){		
+	//takes the GameMediator and CPCObserver as input 
+	public State(GameMediator master, CPCObserver painter){		
 		this.master=master;
 		this.painter=painter;
 	}
@@ -21,22 +21,22 @@ public abstract class State {
 	
 	
 	
-	public JMediator getMaster() {
+	public GameMediator getMaster() {
 		return master;
 	}
 
 
-	public void setMaster(JMediator master) {
+	public void setMaster(GameMediator master) {
 		this.master = master;
 	}
 
 
-	public CPCMediator getPainter() {
+	public CPCObserver getPainter() {
 		return painter;
 	}
 
 
-	public void setPainter(CPCMediator painter) {
+	public void setPainter(CPCObserver painter) {
 		this.painter = painter;
 	}
 	

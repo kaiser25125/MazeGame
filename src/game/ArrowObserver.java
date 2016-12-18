@@ -3,11 +3,12 @@ package game;
 import java.awt.Point;
 import java.awt.Polygon;
 /*
- * this is the observer for the graphic arrows
- * stores them and checks them based on mouse inputs
+ * this is a helper class to store the arrow icons used in the bottom part of the screen
+ * it stores the polygons under respective directions and then has functions to determine if a point
+ * lies inside one of the polygons
  */
 public class ArrowObserver {
-	//every direction
+	//every direction polygon
 	private Polygon Up;
 	private Polygon Left;
 	private Polygon Right;
@@ -37,15 +38,15 @@ public class ArrowObserver {
 	public Polygon getRight() {
 		return Right;
 	}
-	//return whether up was clicked
+	//return whether up polygon was clicked
 	public boolean UpClicked(Point click){
 		return Up.contains(click);
 	}
-	//return whether right direction was clicked
+	//return whether right polygon was clicked
 	public boolean RightClicked(Point click){
 		return Right.contains(click);
 	}
-	//return whether left was clicked
+	//return whether left polygon was clicked
 	public boolean LeftClicked(Point click){
 		return Left.contains(click);
 	}

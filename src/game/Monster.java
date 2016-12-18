@@ -76,7 +76,10 @@ public class Monster implements Runnable {
 	public void setImage(ImageIcon image) {
 		this.image = image;
 	}
-	
+	//function for animation
+	//switches the image to use to draw
+	//no input
+	//output is internal change of images
 	public void switchImage(){
 		ImageIcon dummy=this.image;
 		this.image=this.image2;
@@ -90,17 +93,21 @@ public class Monster implements Runnable {
 		this.alive = alive;
 	}
 	
-	public void addCPCMediatorToState(CPCMediator painter){
+	public void addCPCMediatorToState(CPCObserver painter){
 		this.monsterState.setPainter(painter);
 	}
 	
-	public void addJMediatorToState(JMediator master){
+	public void addJMediatorToState(GameMediator master){
 		this.monsterState.setMaster(master);
 	}
 	public State getMonsterState() {
 		return monsterState;
 	}
-	
+	/*
+	 * sets the monster state to input state
+	 * takes a state as input
+	 * no output
+	 */
 	public void setMonsterState(State monsterState) {
 		this.monsterState = monsterState;
 	}
@@ -138,17 +145,17 @@ public class Monster implements Runnable {
 		// TODO Auto-generated method stub
 		//while the state is returning true
 		boolean run=true;
-		while(run){
-			//do action
-			run=monsterState.doAction();
-			//wait 4 seconds for next attack
-			try{
-				Thread.sleep(4000);
-			}
-			catch(Exception e){
-				e.printStackTrace();
-				System.err.println(e);
-			}
+			while(run){
+				//do action
+				run=monsterState.doAction();
+				//wait 4 seconds for next attack
+				try{
+					Thread.sleep(4000);
+				}
+				catch(Exception e){
+					e.printStackTrace();
+					System.err.println(e);
+				}
+			}	
 		}
-	}
 }

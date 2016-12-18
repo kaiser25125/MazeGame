@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class ItemFrame {
 	/*
-	 * this is the class that displays the item info but holds the custom painted component
+	 * this is the class that displays the item info and holds the custom painted component
 	 * takes an item as input to create
 	 */
 	protected JFrame master;
