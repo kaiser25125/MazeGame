@@ -7,7 +7,7 @@ public class MonsterAnimationThread implements Runnable {
 	private ArrayList<Monster> monsters;
 	/*
 	 * thread for animating monster
-	 * takes the cpc mediator as input and the arraylist of all monsters to animate
+	 * takes the cpc observer as input and the arraylist of all monsters to animate
 	 */
 	public MonsterAnimationThread(CPCObserver repainter, ArrayList<Monster> monsters){
 		this.monsters=monsters;

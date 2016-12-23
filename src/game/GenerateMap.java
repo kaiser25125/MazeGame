@@ -26,7 +26,6 @@ public class GenerateMap {
 	//takes a generateMaze as input and mazeFrame to know location
 	//output is a jFrame of the maze
 	public GenerateMap(GameMediator master, CPCObserver painter){
-		//need the mediators for info
 		this.master=master;
 		this.painter=painter;
 		
@@ -46,13 +45,5 @@ public class GenerateMap {
 		//create frame
 		frame.setVisible(true);				
 	}		
-	//testing code don't use	
-	/*
-	public static void main(String[] args){		
-		JMediator med=new JMediator();		
-		GenerateMap y=new GenerateMap(med);
-		med.turnLeft();
-		med.moveForward();
-	}
-	*/
+
 }

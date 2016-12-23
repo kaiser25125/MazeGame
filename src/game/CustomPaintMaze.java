@@ -22,16 +22,15 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 	GameMediator master;
 	CPCObserver painter;
 	ItemListener itemObservers;
-	/*
-	 * Takes the two mediators as inputs
-	 * outputs the custom painted object
-	 */
+	
 	public static final int MONSTER_IMAGE_SIZE=100;
 	
 	public static final int ITEM_IMAGE_SIZE=50;
-	
-	
-	
+		
+	/*
+	 * Takes the GameMediator and CPCObserver as inputs
+	 * outputs the custom painted object
+	 */
 	public CustomPaintMaze(GameMediator master, CPCObserver painter){
 		this.master=master;
 		this.painter=painter;

@@ -2,8 +2,9 @@ package game;
 
 /*
  * state variable for the monsters
- * has the mediators for messing with data and graphics
- * has monster for damage calculation
+ *	these states determine the behavior that the monster is currently doing
+ *there is one for attacking, being paused, and for being dead
+ *
  */
 public abstract class State {	
 	protected GameMediator master;

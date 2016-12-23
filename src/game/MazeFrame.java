@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 /*
  * mazeframe for controlling the game
- * this is the data that guimaze will have which is the master class
+ * this is the data that guiMaze will have which is the master class
  * has a player and a currentRoom to control the game
  * 
- * need to add method for taking items from room
  */
 public class MazeFrame {
 	User player;
@@ -16,7 +15,8 @@ public class MazeFrame {
 	public MazeFrame(){		
 	}
 	//makes the user turn right
-	//no in or out
+	//input is the GameMediator and the CPCObserver
+	//output is a change in user state
 	public void turnRight(GameMediator master,CPCObserver painter){
 		deActivateNextRoomMonsters(master,painter);
 		switch(player.getDirection()){
@@ -36,7 +36,8 @@ public class MazeFrame {
 		activateNextRoomMonsters(master,painter);
 	}
 	//makes the user turn left
-	//no in or out
+	//input is the GameMediator and the CPCObserver
+	//output is a change in user state
 	public void turnLeft(GameMediator master,CPCObserver painter){
 		deActivateNextRoomMonsters(master,painter);
 		switch(player.getDirection()){
@@ -56,7 +57,7 @@ public class MazeFrame {
 		activateNextRoomMonsters(master,painter);
 	}
 	//makes the user go into the next room they are facing if they can
-	//no input
+	//input is the GameMediator and the CPCObserver
 	//returns whether or not user entered the room
 	public boolean moveForward(GameMediator master,CPCObserver painter){
 		if(hasForwardHall()){
@@ -305,7 +306,7 @@ public class MazeFrame {
 	}
 	/*
 	 * Activates the monsters in the next room
-	 * takes the two mediators as input
+	 * takes the GameMediator and CPCObserver as input
 	 * no return
 	 * starts the threads of the two monsters
 	 */
@@ -371,7 +372,7 @@ public class MazeFrame {
 	}
 	/*
 	 * de activates the monsters in the next room
-	 * takes the mediators as input
+	 * takes the GameMediator and CPCObserver as input
 	 * returns nothing
 	 */
 	public void deActivateNextRoomMonsters(GameMediator master,CPCObserver painter){

@@ -29,7 +29,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 	
 	//mediator to get data
 	private GameMediator master;
-	//mediator to repaint
+	//observer to repaint
 	private CPCObserver repainter;
 	//constants for the screen size
 	public final static int GAME_LENGTH=702;
@@ -98,11 +98,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 	public static int getToolBarSize(){
 		return GuiMaze.GAME_LENGTH/3;
 	}
-	//main
-	public static void main(String[] args){
-		GameMediator master=new GameMediator();		
-		GuiMaze maze=new GuiMaze(master);
-	}
+
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -143,6 +139,12 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	//main
+	public static void main(String[] args){
+		GameMediator master=new GameMediator();		
+		GuiMaze maze=new GuiMaze(master);
 	}
 
 }

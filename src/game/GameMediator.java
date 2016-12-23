@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /*
  * this is a mediator that will hold the generated maze and the mazeframe
+ * should be globally available and there should be one
  * 
  */
 public class GameMediator {

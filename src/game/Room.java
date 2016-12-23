@@ -108,7 +108,7 @@ public class Room {
 		this.items = items;
 	}
 	//funciton to activate monster thread in the future
-	//takes mediators as input
+	//takes the GameMediator and CPCObserver as input
 	//returns nothing
 	public void activateMonsters(GameMediator master,CPCObserver painter){
 		Iterator<Monster> iterator=monster.iterator();
@@ -131,8 +131,8 @@ public class Room {
 		}
 		return;
 	}
-	//stop all of the monsters
-	//takes mediators as input
+	//stop all of the monsters from attacking
+	//takes the GameMediator and CPCObserver as input
 	//no output
 	public void deActivateMonsters(GameMediator master,CPCObserver painter){
 		Iterator<Monster> iterator=monster.iterator();

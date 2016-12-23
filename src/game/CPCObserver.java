@@ -1,6 +1,9 @@
 package game;
 /*
- * mediator for drawing the different parts of the game graphically
+ * Observer for drawing the different parts of the game graphically
+ * Passed as a param almost everywhere
+ * Should be globally available and there should only be one copy
+ * didn't want to use singleton
  */
 public class CPCObserver {
 	//all of the different parts that can be stored to redraw

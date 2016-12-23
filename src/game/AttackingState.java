@@ -9,7 +9,7 @@ public class AttackingState extends State {
 	
 	/*
 	 * this is the constructor
-	 * requires the JMediator and the CPCObserver
+	 * requires the GameMediator and the CPCObserver
 	 */
 	public AttackingState(GameMediator master, CPCObserver painter) {
 		super(master, painter);

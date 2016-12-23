@@ -93,11 +93,11 @@ public class Monster implements Runnable {
 		this.alive = alive;
 	}
 	
-	public void addCPCMediatorToState(CPCObserver painter){
+	public void addCPCObserverToState(CPCObserver painter){
 		this.monsterState.setPainter(painter);
 	}
 	
-	public void addJMediatorToState(GameMediator master){
+	public void addGameMediatorToState(GameMediator master){
 		this.monsterState.setMaster(master);
 	}
 	public State getMonsterState() {
