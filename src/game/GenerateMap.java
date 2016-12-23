@@ -20,8 +20,8 @@ public class GenerateMap {
 	protected JPanel gamePanel;
 	private CPCObserver painter;
 	//constants for the sizes of the rooms
-	public final static int roomLength=100;
-	public final static int roomWidth=100;
+	public final static int ROOM_LENGTH=100;
+	public final static int ROOM_WIDTH=100;
 	//constructor for the class
 	//takes a generateMaze as input and mazeFrame to know location
 	//output is a jFrame of the maze
@@ -33,7 +33,7 @@ public class GenerateMap {
 		//create frame
 		frame=new JFrame();
 		frame.setLayout(new BorderLayout());
-		frame.setSize(new Dimension(master.getNumColumns()*roomWidth+17, master.getNumRows()*roomLength+40));
+		frame.setSize(new Dimension(master.getNumColumns()*ROOM_WIDTH+17, master.getNumRows()*ROOM_LENGTH+40));
 		//create panel
 		gamePanel=new JPanel();
 		//gamePanel.setPreferredSize(new Dimension(maze.getNumColumns()*roomWidth,maze.getNumRows()*roomLength));				

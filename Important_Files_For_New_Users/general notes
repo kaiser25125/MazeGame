@@ -1,0 +1,12 @@
+The main class that runs the whole game is inside GuiMaze.  All of the files for images and for 
+the file that designs the whole game (info.txt) need to be in the parent folder.
+
+A few important notes
+
+-all monsters are 100 by 100 in size in the maze, to change this change the MONSTER_IMAGE_SIZE constant in CustomPaintMaze
+
+-all images get resized to be 50 by 50,  to change this change the ITEM_IMAGE_SIZE constant in CustomPaintMaze
+
+-there are no one sided passage ways.  If a room has a passage to the east there should be a passage to the west from the eastward room
+
+-info.txt describes the maze.  It must be in the same folder of the package of all the code and there is documentation for it in documentationForTxtFile

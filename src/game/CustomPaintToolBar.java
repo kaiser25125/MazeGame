@@ -35,7 +35,7 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 		this.painter=med2;		
 		this.graphicItems=new ItemListener();
 		//set the size of the bottom
-		this.setPreferredSize(new Dimension(GuiMaze.gameWidth,GuiMaze.getToolBarSize()-GuiMaze.bottomPanelOffSet));		
+		this.setPreferredSize(new Dimension(GuiMaze.GAME_WIDTH,GuiMaze.getToolBarSize()-GuiMaze.BOTTOM_PANEL_OFFSET));		
 		this.addMouseListener(this);
 	}
 	//paint method for the bottom
@@ -54,7 +54,7 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 			//make the up arrow
 			int[] xPoints = new int[3];
 			int[] yPoints = new int[3];
-			xPoints[0]=(GuiMaze.gameWidth)-((int)(GuiMaze.gameWidth*.9));
+			xPoints[0]=(GuiMaze.GAME_WIDTH)-((int)(GuiMaze.GAME_WIDTH*.9));
 			xPoints[1]=xPoints[0]-xOffSet;
 			xPoints[2]=xPoints[0]+xOffSet;
 			yPoints[0]=GuiMaze.getToolBarSize()-((int)(GuiMaze.getToolBarSize()*.8));
@@ -94,7 +94,7 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 			//draw it
 			g.drawPolygon(triangle);
 			//draw the map button
-			int mapButtonX=GuiMaze.gameWidth-((int)(GuiMaze.gameWidth*.2));
+			int mapButtonX=GuiMaze.GAME_WIDTH-((int)(GuiMaze.GAME_WIDTH*.2));
 			int mapButtonY=GuiMaze.getToolBarSize()/4;
 			mapButton=new Rectangle(mapButtonX,mapButtonY,mapButtonWidth,mapButtonHeight);
 			g.drawRect(mapButton.x, mapButton.y, mapButton.width, mapButton.height);
@@ -127,13 +127,13 @@ public class CustomPaintToolBar extends JComponent implements MouseListener{
 				while(itemIterator.hasNext()){
 					//draw it
 					currentItem=itemIterator.next();
-					xPosition=GuiMaze.gameWidth/3;
-					xPosition=xPosition+((GuiMaze.gameWidth/items.size()/3)*itemCounter);
+					xPosition=GuiMaze.GAME_WIDTH/3;
+					xPosition=xPosition+((GuiMaze.GAME_WIDTH/items.size()/3)*itemCounter);
 					yPosition=GuiMaze.getToolBarSize()/3;
-					listener=new Rectangle(xPosition,yPosition,CustomPaintMaze.itemImageSize,CustomPaintMaze.itemImageSize);
+					listener=new Rectangle(xPosition,yPosition,CustomPaintMaze.ITEM_IMAGE_SIZE,CustomPaintMaze.ITEM_IMAGE_SIZE);
 					//add this to the observers
 					graphicItems.addListener(listener);				
-					g.drawImage(currentItem.getImage().getImage(), xPosition, yPosition, CustomPaintMaze.itemImageSize, CustomPaintMaze.itemImageSize,null);				
+					g.drawImage(currentItem.getImage().getImage(), xPosition, yPosition, CustomPaintMaze.ITEM_IMAGE_SIZE, CustomPaintMaze.ITEM_IMAGE_SIZE,null);				
 					itemCounter=itemCounter+1;
 				}
 			}

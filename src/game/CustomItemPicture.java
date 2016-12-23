@@ -12,12 +12,12 @@ public class CustomItemPicture extends JComponent {
 	public CustomItemPicture(Item display){
 		itemToDescr=display;
 	}
-	public static final int cipPicSize=50;
+	public static final int MONSTER_IMAGE_SIZE=50;
 	public void paint(Graphics g){
 		//draw the image
 		int xPosition=this.getX()+this.getWidth()/3;
 		int yPosition=this.getY()+this.getHeight()/4;
-		g.drawImage(itemToDescr.getImage().getImage(), xPosition, yPosition,cipPicSize,cipPicSize, null);
+		g.drawImage(itemToDescr.getImage().getImage(), xPosition, yPosition,MONSTER_IMAGE_SIZE,MONSTER_IMAGE_SIZE, null);
 		//name
 		xPosition=this.getX()+this.getWidth()/4;
 		yPosition=this.getY()+this.getHeight()/2;

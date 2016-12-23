@@ -1,0 +1,20 @@
+2,2
+Room
+None
+Gel,gelatinousCube1.png,gelatinousCube2.png,20,1,darkness,10
+S,E
+Room
+None
+None
+N,E
+Room
+None
+None
+S,W
+Room
+Cursed Gem,gem.png,2,darkness_Light chalice,chalice.png,3,light
+None
+W,N
+20
+0,0
+2

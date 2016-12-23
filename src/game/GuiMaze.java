@@ -25,21 +25,21 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 	private JPanel jBottomPanel;
 	
 	//constant to make bottom panel look better
-	public final static int bottomPanelOffSet=40;
+	public final static int BOTTOM_PANEL_OFFSET=40;
 	
 	//mediator to get data
 	private GameMediator master;
 	//mediator to repaint
 	private CPCObserver repainter;
 	//constants for the screen size
-	public final static int gameLength=702;
-	public final static int gameWidth=900;
+	public final static int GAME_LENGTH=702;
+	public final static int GAME_WIDTH=900;
 	//needs the data mediator as input
 	public GuiMaze(GameMediator med){
 		this.master=med;
 		//initalize the game panel
 		jWhole=new JFrame();
-		jWhole.setSize(gameWidth, gameLength);
+		jWhole.setSize(GAME_WIDTH, GAME_LENGTH);
 		jWhole.setLayout(new BorderLayout());
 		jTopPanel=new JPanel(new BorderLayout());
 		
@@ -49,7 +49,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 		jBottomPanel=new JPanel();
 		jBottomPanel.setBackground(new Color(236, 230, 40));
 		//temp fix for the bottom panel
-		jBottomPanel.setPreferredSize(new Dimension(gameWidth,getToolBarSize()-bottomPanelOffSet));
+		jBottomPanel.setPreferredSize(new Dimension(GAME_WIDTH,getToolBarSize()-BOTTOM_PANEL_OFFSET));
 		jBottomPanel.setLayout(new BorderLayout());
 		//create the graphic observer
 		repainter=new CPCObserver();
@@ -96,7 +96,7 @@ public class GuiMaze extends JFrame implements ActionListener,KeyListener {
 	
 	//value for setting how big bottom part of the screen is
 	public static int getToolBarSize(){
-		return GuiMaze.gameLength/3;
+		return GuiMaze.GAME_LENGTH/3;
 	}
 	//main
 	public static void main(String[] args){

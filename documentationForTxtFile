@@ -1,25 +1,28 @@
-//note all element names should be less than 10 characters
-Number of rows, Number of columns
+note all element names should be less than 10 characters
+
+Whenever you see // this means it is only a comment and not actually in text file
+
+//Number of rows, Number of columns
 2,3
 Room
-Csv of items with name,power,element of item and an underscore for another or None like so
+//Csv of items with name,power,element of item and an underscore for another or None like so
 Name,Image file for item,damage it deals,element_name,power,element
 ex1:Fire ball,fire.png,5,fire_ice ball,ice.png,2,ice
 ex2:None
-Csv of monsters in the room or None
+//Csv of monsters in the room or None
 Name,Image file for monster,Second image for animation,health,damage it deals,element weak to,number to multiply damage by if element used is weakness and an underscore for another or None
 ex1:Kobold,kobold.png,kobold2.png,20,5,ice,5
 ex2:None
-Direction that you can move
-Csv with each direction
+//Direction that you can move from that room
+//Csv with each direction
 W,S,E,N
-After all rooms
-Health of player
+//After all rooms
+//Health of player
 20
-Room to start in
-row,column
+//Room to start in
+//row,column
 0,1
-Maximum number of items
+//Maximum number of items player can have
 2
 
 (ex1 and ex2 will not be in the text file)

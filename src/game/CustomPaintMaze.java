@@ -26,16 +26,16 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 	 * Takes the two mediators as inputs
 	 * outputs the custom painted object
 	 */
-	public static final int monsterImageSize=100;
+	public static final int MONSTER_IMAGE_SIZE=100;
 	
-	public static final int itemImageSize=50;
+	public static final int ITEM_IMAGE_SIZE=50;
 	
 	
 	
 	public CustomPaintMaze(GameMediator master, CPCObserver painter){
 		this.master=master;
 		this.painter=painter;
-		this.setPreferredSize(new Dimension(GuiMaze.gameWidth,GuiMaze.gameLength-GuiMaze.getToolBarSize()));
+		this.setPreferredSize(new Dimension(GuiMaze.GAME_WIDTH,GuiMaze.GAME_LENGTH-GuiMaze.getToolBarSize()));
 		this.addMouseListener(this);
 	}
 	/*
@@ -55,14 +55,14 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 			//set up observers for items
 			itemObservers=new ItemListener();
 			//draw the walls
-			int wallLength=GuiMaze.gameLength-GuiMaze.getToolBarSize();
-			int wallWidth=GuiMaze.gameWidth/3;
+			int wallLength=GuiMaze.GAME_LENGTH-GuiMaze.getToolBarSize();
+			int wallWidth=GuiMaze.GAME_WIDTH/3;
 			int wallyPosition=0;
 			int wallxPosition=0;
 			g.drawImage(roomLeft.getImage(), wallxPosition, wallyPosition, wallWidth,wallLength , null);
-			wallxPosition=GuiMaze.gameWidth/3;
+			wallxPosition=GuiMaze.GAME_WIDTH/3;
 			g.drawImage(roomForward.getImage(), wallxPosition, wallyPosition, wallWidth, wallLength, null);
-			wallxPosition=GuiMaze.gameWidth-GuiMaze.gameWidth/3;
+			wallxPosition=GuiMaze.GAME_WIDTH-GuiMaze.GAME_WIDTH/3;
 			g.drawImage(roomRight.getImage(), wallxPosition, wallyPosition, wallWidth, wallLength, null);
 			//	draw the monsters for the game
 			if(master.nextRoomHasMonster()){			
@@ -77,39 +77,39 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 				Rectangle healthBar;
 				int healthWidth;
 				//parsing float
-				float healthParse=monsterImageSize;
+				float healthParse=MONSTER_IMAGE_SIZE;
 				//while there is a next monster
 				while(iterator.hasNext()){				
 					currentMonster=iterator.next();
 					xPosition=0;
 					yPosition=0;								
-					healthParse=monsterImageSize;
+					healthParse=MONSTER_IMAGE_SIZE;
 					healthWidth=0;
 					//if the monster is not dead
 					if(!(currentMonster.getMonsterState() instanceof DeadState)){
 						//draw all of the monsters
-						xPosition=GuiMaze.gameWidth/3;
-						xPosition=xPosition+((GuiMaze.gameWidth/master.getNextRoomMonsters().size()/3)*monsterCounter);
-						yPosition=GuiMaze.gameLength-GuiMaze.getToolBarSize()-GuiMaze.gameLength/4;
-						g.drawImage(currentMonster.getImage().getImage(), xPosition, yPosition, monsterImageSize, monsterImageSize,null);
+						xPosition=GuiMaze.GAME_WIDTH/3;
+						xPosition=xPosition+((GuiMaze.GAME_WIDTH/master.getNextRoomMonsters().size()/3)*monsterCounter);
+						yPosition=GuiMaze.GAME_LENGTH-GuiMaze.getToolBarSize()-GuiMaze.GAME_LENGTH/4;
+						g.drawImage(currentMonster.getImage().getImage(), xPosition, yPosition, MONSTER_IMAGE_SIZE, MONSTER_IMAGE_SIZE,null);
 					
 						//draw the health bars
 						yPosition=yPosition-yOffSet;
 						//draw element weak to
 						g.setColor(Color.white);
-						g.fillRect(xPosition, yPosition-2*yOffSet, monsterImageSize, monsterImageSize/8);
+						g.fillRect(xPosition, yPosition-2*yOffSet, MONSTER_IMAGE_SIZE, MONSTER_IMAGE_SIZE/8);
 						g.setColor(Color.black);
 						//	needed new font
 						g.setFont(new Font("TimesRoman", Font.PLAIN, 12));
 						g.drawString("Weak: "+currentMonster.getElement(), xPosition+5, yPosition-yOffSet);
 						//draw outer green
 						g.setColor(Color.green);
-						g.drawRect(xPosition, yPosition, monsterImageSize, monsterImageSize/10);
+						g.drawRect(xPosition, yPosition, MONSTER_IMAGE_SIZE, MONSTER_IMAGE_SIZE/10);
 						g.setColor(GuiMaze.getColor(currentMonster.getPercentHealth()));
 						//draw the actual health
 						healthParse=healthParse*currentMonster.getPercentHealth();					
 						healthWidth=(int)healthParse;						
-						g.fillRect(xPosition, yPosition, healthWidth, monsterImageSize/10);
+						g.fillRect(xPosition, yPosition, healthWidth, MONSTER_IMAGE_SIZE/10);
 						monsterCounter=monsterCounter+1;
 					}
 				}
@@ -128,14 +128,14 @@ public class CustomPaintMaze extends JComponent implements MouseListener {
 					//get the next item
 					currentItem=itemIterator.next();
 					//	calculate where to put it
-					xPosition2=GuiMaze.gameWidth/3;
-					xPosition2=xPosition2+((GuiMaze.gameWidth/items.size()/3)*itemCounter);
-					yPosition2=GuiMaze.gameLength-GuiMaze.getToolBarSize()-GuiMaze.gameLength/7;
+					xPosition2=GuiMaze.GAME_WIDTH/3;
+					xPosition2=xPosition2+((GuiMaze.GAME_WIDTH/items.size()/3)*itemCounter);
+					yPosition2=GuiMaze.GAME_LENGTH-GuiMaze.getToolBarSize()-GuiMaze.GAME_LENGTH/7;
 					//	create listener for item
-					listener=new Rectangle(xPosition2,yPosition2,itemImageSize,itemImageSize);
+					listener=new Rectangle(xPosition2,yPosition2,ITEM_IMAGE_SIZE,ITEM_IMAGE_SIZE);
 					itemObservers.addListener(listener);
 					//draw it
-					g.drawImage(currentItem.getImage().getImage(), xPosition2, yPosition2, itemImageSize, itemImageSize,null);				
+					g.drawImage(currentItem.getImage().getImage(), xPosition2, yPosition2, ITEM_IMAGE_SIZE, ITEM_IMAGE_SIZE,null);				
 					itemCounter=itemCounter+1;
 				}
 			}

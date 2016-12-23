@@ -18,8 +18,8 @@ public class CustomPaintMap extends JComponent {
 	public CustomPaintMap(GameMediator master){
 		this.master=master;
 		
-		this.setMinimumSize((new Dimension(master.getNumColumns()*GenerateMap.roomWidth,master.getNumRows()*GenerateMap.roomLength)));
-		this.setPreferredSize((new Dimension(master.getNumColumns()*GenerateMap.roomWidth,master.getNumRows()*GenerateMap.roomLength)));
+		this.setMinimumSize((new Dimension(master.getNumColumns()*GenerateMap.ROOM_WIDTH,master.getNumRows()*GenerateMap.ROOM_LENGTH)));
+		this.setPreferredSize((new Dimension(master.getNumColumns()*GenerateMap.ROOM_WIDTH,master.getNumRows()*GenerateMap.ROOM_LENGTH)));
 	}
 	//general paint method
 	public void paint(Graphics g){
@@ -35,17 +35,17 @@ public class CustomPaintMap extends JComponent {
 			for(int t=0; t<master.getNumRows(); t++){
 				g.setColor(Color.gray);
 				//draw the room
-				g.fillRect(i*GenerateMap.roomWidth, t*GenerateMap.roomLength, GenerateMap.roomWidth, GenerateMap.roomLength);
+				g.fillRect(i*GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH, GenerateMap.ROOM_WIDTH, GenerateMap.ROOM_LENGTH);
 				//draw the lines that you can go past
 				g.setColor(Color.red);
 				//W line
-				g.drawLine(i*GenerateMap.roomWidth, t*GenerateMap.roomLength,i*GenerateMap.roomWidth , t*GenerateMap.roomLength+GenerateMap.roomLength);
+				g.drawLine(i*GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH,i*GenerateMap.ROOM_WIDTH , t*GenerateMap.ROOM_LENGTH+GenerateMap.ROOM_LENGTH);
 				//N line
-				g.drawLine(i*GenerateMap.roomWidth, t*GenerateMap.roomLength,i*GenerateMap.roomWidth + GenerateMap.roomWidth , t*GenerateMap.roomLength);
+				g.drawLine(i*GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH,i*GenerateMap.ROOM_WIDTH + GenerateMap.ROOM_WIDTH , t*GenerateMap.ROOM_LENGTH);
 				//E line
-				g.drawLine(i*GenerateMap.roomWidth + GenerateMap.roomWidth, t*GenerateMap.roomLength,i*GenerateMap.roomWidth +GenerateMap.roomWidth, t*GenerateMap.roomLength + GenerateMap.roomLength);
+				g.drawLine(i*GenerateMap.ROOM_WIDTH + GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH,i*GenerateMap.ROOM_WIDTH +GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH + GenerateMap.ROOM_LENGTH);
 				//S line
-				g.drawLine(i*GenerateMap.roomWidth, t*GenerateMap.roomLength + GenerateMap.roomLength,i*GenerateMap.roomWidth +GenerateMap.roomWidth, t*GenerateMap.roomLength + GenerateMap.roomLength);
+				g.drawLine(i*GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH + GenerateMap.ROOM_LENGTH,i*GenerateMap.ROOM_WIDTH +GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH + GenerateMap.ROOM_LENGTH);
 				//get the room at this location
 				//don't know why I didn't do this first
 				currentWorkingOn=master.getRoomAtLocation(Integer.toString(t)+","+Integer.toString(i));
@@ -53,21 +53,21 @@ public class CustomPaintMap extends JComponent {
 				g.setColor(Color.gray);
 				//open the lines that are passable
 				if(currentWorkingOn.getE()!=null){
-					g.drawLine(i*GenerateMap.roomWidth + GenerateMap.roomWidth, t*GenerateMap.roomLength+offSetsForWalls,i*GenerateMap.roomWidth +GenerateMap.roomWidth, t*GenerateMap.roomLength + GenerateMap.roomLength-offSetsForWalls);
+					g.drawLine(i*GenerateMap.ROOM_WIDTH + GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH+offSetsForWalls,i*GenerateMap.ROOM_WIDTH +GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH + GenerateMap.ROOM_LENGTH-offSetsForWalls);
 				}
 				if(currentWorkingOn.getW()!=null){
-					g.drawLine(i*GenerateMap.roomWidth, t*GenerateMap.roomLength+offSetsForWalls,i*GenerateMap.roomWidth , t*GenerateMap.roomLength+GenerateMap.roomLength-offSetsForWalls);
+					g.drawLine(i*GenerateMap.ROOM_WIDTH, t*GenerateMap.ROOM_LENGTH+offSetsForWalls,i*GenerateMap.ROOM_WIDTH , t*GenerateMap.ROOM_LENGTH+GenerateMap.ROOM_LENGTH-offSetsForWalls);
 				}
 				if(currentWorkingOn.getN()!=null){
-					g.drawLine(i*GenerateMap.roomWidth + offSetsForWalls, t*GenerateMap.roomLength,i*GenerateMap.roomWidth + GenerateMap.roomWidth -offSetsForWalls, t*GenerateMap.roomLength);
+					g.drawLine(i*GenerateMap.ROOM_WIDTH + offSetsForWalls, t*GenerateMap.ROOM_LENGTH,i*GenerateMap.ROOM_WIDTH + GenerateMap.ROOM_WIDTH -offSetsForWalls, t*GenerateMap.ROOM_LENGTH);
 				}
 				if(currentWorkingOn.getS()!=null){
-					g.drawLine(i*GenerateMap.roomWidth+offSetsForWalls, t*GenerateMap.roomLength + GenerateMap.roomLength,i*GenerateMap.roomWidth +GenerateMap.roomWidth - offSetsForWalls, t*GenerateMap.roomLength + GenerateMap.roomLength);					
+					g.drawLine(i*GenerateMap.ROOM_WIDTH+offSetsForWalls, t*GenerateMap.ROOM_LENGTH + GenerateMap.ROOM_LENGTH,i*GenerateMap.ROOM_WIDTH +GenerateMap.ROOM_WIDTH - offSetsForWalls, t*GenerateMap.ROOM_LENGTH + GenerateMap.ROOM_LENGTH);					
 				}
 				g.setColor(Color.blue);
 				//set where user is
 				if(currentWorkingOn==master.getCurrentRoom()){
-					g.drawString(master.getUserDirection(), i*GenerateMap.roomWidth+GenerateMap.roomWidth/2, t*GenerateMap.roomLength+GenerateMap.roomLength/2);
+					g.drawString(master.getUserDirection(), i*GenerateMap.ROOM_WIDTH+GenerateMap.ROOM_WIDTH/2, t*GenerateMap.ROOM_LENGTH+GenerateMap.ROOM_LENGTH/2);
 				}
 				//set the items if they are in this room
 				if(currentWorkingOn.items.size()>0){
@@ -77,7 +77,7 @@ public class CustomPaintMap extends JComponent {
 						g.setColor(Color.green);
 					if(currentWorkingOn.items.size()>2)
 						g.setColor(Color.red);
-					g.fillRect(i*GenerateMap.roomWidth+(shaveForPosition), GenerateMap.roomLength+t*GenerateMap.roomLength-shaveForPosition, lwItemRect, lwItemRect);					
+					g.fillRect(i*GenerateMap.ROOM_WIDTH+(shaveForPosition), GenerateMap.ROOM_LENGTH+t*GenerateMap.ROOM_LENGTH-shaveForPosition, lwItemRect, lwItemRect);					
 				}
 			}
 		}
