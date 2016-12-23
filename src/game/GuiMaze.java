@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  */
 	
 
-public class GuiMaze extends JFrame implements ActionListener,KeyListener {
+public class GuiMaze implements ActionListener,KeyListener {
 	//components for the screen	
 	private JFrame jWhole;
 	private JPanel jTopPanel;
