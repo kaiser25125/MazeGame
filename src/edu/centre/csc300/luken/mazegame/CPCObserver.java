@@ -1,4 +1,4 @@
-package game;
+package edu.centre.csc300.luken.mazegame;
 /*
  * Observer for drawing the different parts of the game graphically
  * Passed as a param almost everywhere

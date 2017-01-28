@@ -1,4 +1,4 @@
-package game;
+package edu.centre.csc300.luken.mazegame;
 
 /*
  * state variable for the monsters

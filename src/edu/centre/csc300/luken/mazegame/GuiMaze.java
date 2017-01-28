@@ -1,4 +1,4 @@
-package game;
+package edu.centre.csc300.luken.mazegame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -30,7 +30,7 @@ public class GuiMaze implements ActionListener,KeyListener {
 	//mediator to get data
 	private GameMediator master;
 	//observer to repaint
-	private CPCObserver repainter;
+	private CPCObserver painter;
 	//constants for the screen size
 	public final static int GAME_LENGTH=702;
 	public final static int GAME_WIDTH=900;
@@ -52,24 +52,24 @@ public class GuiMaze implements ActionListener,KeyListener {
 		jBottomPanel.setPreferredSize(new Dimension(GAME_WIDTH,getToolBarSize()-BOTTOM_PANEL_OFFSET));
 		jBottomPanel.setLayout(new BorderLayout());
 		//create the graphic observer
-		repainter=new CPCObserver();
+		painter=new CPCObserver();
 		//create the custom painted component in the bottom of the screen
-		CustomPaintToolBar bar=new CustomPaintToolBar(master,repainter);
+		CustomPaintToolBar bar=new CustomPaintToolBar(master,painter);
 		//add to observer
-		repainter.setToolBar(bar);
+		painter.setToolBar(bar);
 		//add bottom graphics to bottom panel
 		jBottomPanel.add(bar,BorderLayout.CENTER);
 		//add bottom panel to panel
 		jWhole.add(jBottomPanel,BorderLayout.SOUTH);
 		//create the maze pictures
-		CustomPaintMaze pictures=new CustomPaintMaze(master,repainter);
+		CustomPaintMaze pictures=new CustomPaintMaze(master,painter);
 		//set observer for top graphics
-		repainter.setRoom(pictures);
+		painter.setRoom(pictures);
 		
 		//add the graphics observer to the mediator
-		master.setPainter(repainter);
+		master.setPainter(painter);
 		//activate thread for animating monsters
-		MonsterAnimationThread animator=new MonsterAnimationThread(repainter,master.getAllMonsters());		
+		MonsterAnimationThread animator=new MonsterAnimationThread(painter,master.getAllMonsters());		
 		
 		//add the top part of the screen
 		jTopPanel.add(pictures, BorderLayout.CENTER);
@@ -114,15 +114,15 @@ public class GuiMaze implements ActionListener,KeyListener {
 		// TODO Auto-generated method stub		
 		if (arg0.getKeyCode() == KeyEvent.VK_UP) {
 			master.moveForward();
-			repainter.reDraw();
+			painter.reDraw();
 		}
 		if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
 			master.turnLeft();
-			repainter.reDraw();
+			painter.reDraw();
 		}
 		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
 			master.turnRight();
-			repainter.reDraw();
+			painter.reDraw();
 		}		
 		
 	}
