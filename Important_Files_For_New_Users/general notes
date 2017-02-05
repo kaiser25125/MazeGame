@@ -1,7 +1,7 @@
 The main class that runs the whole game is inside GuiMaze.  All of the files for images and for 
 the file that designs the whole game (info.txt) need to be in the parent folder.
 
-A few important notes
+A few important notes for specifications inside of the game
 
 -all monsters are 100 by 100 in size in the maze, to change this change the MONSTER_IMAGE_SIZE constant in CustomPaintMaze
 
@@ -10,3 +10,17 @@ A few important notes
 -there are no one sided passage ways.  If a room has a passage to the east there should be a passage to the west from the eastward room
 
 -info.txt describes the maze.  It must be in the same folder of the package of all the code and there is documentation for it in documentationForTxtFile
+
+A few important notes for reading code
+
+-GuiMaze basically has aggregates of all the important parts.  It is the master class.
+
+-GameMediator is the data manager of the game.  It handles all of the data and doesn't touch the graphics.
+
+-MazeFrame contains all of the data for the game.
+
+-CPCObserver is the class that updates all of the graphics.  See its aggregates for the graphics.
+
+-All of the custom painted components start with custom.
+
+-There is a uml diagram called uml_diagram.png.  It displays the relationships throughout the system.
